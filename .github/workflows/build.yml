@@ -1,4 +1,4 @@
-name: Algorithms-FinalProject
+name: Algorithms
 
 on: [push]
 
@@ -53,7 +53,7 @@ jobs:
         run: ls -al ${{runner.workspace}}/build
 
       - name: List where artifact is located
-        run: ls -halt ${{runner.workspace}}/Algorithms-FinalProject
+        run: ls -halt ${{runner.workspace}}/Algorithms
         
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
