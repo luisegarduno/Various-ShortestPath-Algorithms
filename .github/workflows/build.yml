@@ -53,7 +53,7 @@ jobs:
         run: ls -al ${{runner.workspace}}/build
 
       - name: List where artifact is located
-        run: ls -halt ${{runner.workspace}}/FinalProject
+        run: ls -halt ${{runner.workspace}}/
         
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
