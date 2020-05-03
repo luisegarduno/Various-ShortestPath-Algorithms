@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+
+#include "FileReader.h"
 #include "MissingFilesException.h"
 
 using namespace std;
@@ -15,7 +17,8 @@ int main(int argc,char * argv[]){
             throw MissingFilesException{};
 
         else{
-
+            auto * networkFile = new FileReader();
+            networkFile->setCommands(argv[1]);
         }
     }
 
