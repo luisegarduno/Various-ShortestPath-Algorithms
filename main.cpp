@@ -19,6 +19,11 @@ int main(int argc,char * argv[]){
         else{
             auto * networkFile = new FileReader();
             networkFile->setCommands(argv[1]);
+
+            vector<string> input = networkFile->getInputFiles();
+            vector<string> output = networkFile->getOutputFiles();
+
+            delete networkFile;
         }
     }
 
