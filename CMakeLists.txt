@@ -10,10 +10,10 @@ set (EXE_NAME FinalProject)
 #   set (input01 "train_data.csv")
 #   set (input02 "train_target.csv")
 # etc....
-set (input01 "")
-set (input02 "")
-set (input03 "")
-set (input04 "")
+set (input01 "InputFiles/networks.txt")
+set (input02 "InputFiles/moreno_kangaroo.txt")
+set (input03 "InputFiles/moreno_macaques.txt")
+set (input04 "InputFiles/opsahl-usairport.txt")
 
 #
 ##########################################

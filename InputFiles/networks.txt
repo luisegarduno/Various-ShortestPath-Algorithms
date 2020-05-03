@@ -1,0 +1,3 @@
+[small] moreno_kangaroo.txt
+[medium] moreno_macaques.txt
+[large] opsahl-usairport
