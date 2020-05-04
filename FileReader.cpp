@@ -100,6 +100,11 @@ void FileReader::setFileName(const char filename[]){
 void FileReader::addOutputFileSet(int fileID) {
     string tempFilename;
 
+    FILE *fp;
+    mkdir("sample", 0777);
+    fp = fopen("OutputFiles/sample.txt", "w+");
+    fprintf(fp, "Hello World!!!");
+
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         string tempString;

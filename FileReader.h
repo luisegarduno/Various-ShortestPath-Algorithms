@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <cstdio>
 #include <utility>
 #include <fstream>
 #include <cstring>
