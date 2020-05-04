@@ -64,8 +64,8 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
-          sudo ls -alt ${{runner.workspace}}/build/OutputFiles/
-          sudo cp -R ${{runner.workspace}}/build/OutputFiles/* artifacts/
+          sudo ls -alt ${{runner.workspace}}/build/OutputFiles
+          sudo cp -R ${{runner.workspace}}/build/OutputFiles artifacts/
           for f in $OUTPUT_FILES
           do
             echo "  Copying $f"
