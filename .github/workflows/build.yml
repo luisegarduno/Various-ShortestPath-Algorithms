@@ -9,7 +9,7 @@ env:
   ###   Output Files will follow input files
   ###   Note: These should be the actual names of the files.  No double quotes
   INPUT_FILES: InputFiles/networks.txt
-  OUTPUT_FILES: OutputFiles/1_Trivial.txt
+  OUTPUT_FILES:
 
 jobs:
   build:
