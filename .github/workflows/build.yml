@@ -64,15 +64,12 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
-          cd OutputFiles
-          ls -halt
-          cd ..
           for f in $OUTPUT_FILES
           do
             echo "  Copying $f"
             cp $f artifacts/
           done
-          rsync -r ../OutputFiles/ artifacts
+          sudo cp -R OutputFiles artifacts
 
 
       - name: List where artifact is located 2
