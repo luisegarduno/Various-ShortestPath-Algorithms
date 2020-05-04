@@ -51,22 +51,24 @@ jobs:
 
       - name: List contents of build directory
         run: ls -al ${{runner.workspace}}/build
-
-      - name: List where artifact is located
-        run: ls -halt ${{runner.workspace}}/Algorithms-FinalProject
         
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
         shell: bash
         run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
 
+      - name: List where artifact is located
+        run: |
+          ls -halt ${{runner.workspace}}/Algorithms-FinalProject
+          sudo ls -alt ${{runner.workspace}}/build
+          sudo ls -halt ${{runner.workspace}}/Algorithms-FinalProject
+
       - name: Copy output files to artifact directory
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
-          sudo ls -alt ${{runner.workspace}}/build
-          sudo ls -halt ${{runner.workspace}}/Algorithms-FinalProject
 
+          sudo cp -R ${{runner.workspace}}/build/OutputFiles artifacts/
           for f in $OUTPUT_FILES
           do
             echo "  Copying $f"
