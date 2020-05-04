@@ -13,8 +13,8 @@ void FileReader::setCommands(const char argv[]) {
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
-    if(!mkdir("../OutputFiles",0)){
-        mkdir("../OutputFiles", 0);
+    if(!mkdir("OutputFiles",0)){
+        mkdir("OutputFiles", 0);
     }
 
     // Iterate through the file given in the command line and
@@ -95,15 +95,15 @@ void FileReader::addOutputFileSet(int fileID) {
     
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("../OutputFiles/" + tempFilename, ios::out);    }
+        fstream newFile("OutputFiles/" + tempFilename, ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("../OutputFiles/" + tempFilename, ios::out);    }
+        fstream newFile("OutputFiles/" + tempFilename, ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("../OutputFiles/" + tempFilename, ios::out);    }
+        fstream newFile("OutputFiles/" + tempFilename, ios::out);    }
 }
 
 // Returns total number of provided files
