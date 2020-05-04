@@ -32,6 +32,7 @@ jobs:
           echo " "
           g++ --version
           cmake --version
+
       - name: Create build environment
         #run: cmake -E make_directory ${{runner.workspace}}/build
         run:  mkdir ${{runner.workspace}}/build
@@ -59,8 +60,6 @@ jobs:
 
       - name: List where artifact is located
         run: |
-          ls -halt /home/runner/work
-          sudo ls -halt /home/runner/work/Algorithms-FinalProject/_temp
           ls -halt ${{runner.workspace}}/Algorithms-FinalProject
           sudo ls -alt ${{runner.workspace}}/build/OutputFiles
           for FILE in ${{runner.workspace}}/build/OutputFiles/*
