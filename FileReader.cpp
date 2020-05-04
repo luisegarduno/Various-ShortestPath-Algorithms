@@ -13,10 +13,6 @@ void FileReader::setCommands(const char argv[]) {
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
-    //if(!mkdir("OutputFiles",0)){
-      //  mkdir("OutputFiles", 0);
-    //}
-
     if (mkdir("OutputFiles", 0777) == -1){
         cerr << "Error :  " << strerror(errno) << endl;
     }

@@ -23,7 +23,6 @@ using std::endl;
 using std::cerr;
 using std::string;
 using std::vector;
-using std::system;
 using std::fstream;
 using std::to_string;
 
