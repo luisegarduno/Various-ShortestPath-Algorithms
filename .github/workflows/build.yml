@@ -59,12 +59,11 @@ jobs:
 
       - name: List where artifact is located
         run: |
-          ls -halt /home/runner
           ls -halt /home/runner/work
-          ls -halt /home/runner/work/Algorithms-FinalProject
-          ls -halt /home/runner/work/Algorithms-FinalProject/Algorithms-FinalProject
-          sudo ls -alt /home/runner/work/Algorithms-FinalProject/build/OutputFiles
-          for FILE in /home/runner/work/Algorithms-FinalProject/build/OutputFiles/*
+          sudo ls -halt /home/runner/work/Algorithms-FinalProject/_temp
+          ls -halt ${{runner.workspace}}/Algorithms-FinalProject
+          sudo ls -alt ${{runner.workspace}}/build/OutputFiles
+          for FILE in ${{runner.workspace}}/build/OutputFiles/*
           do
              echo $FILE
           done
@@ -84,7 +83,8 @@ jobs:
       - name: List where artifact is located 3
         run: |
           ls -halt ${{runner.workspace}}/build
-          ls -halt ${{runner.workspace}}/build/OutputFiles
+          sudo ls -halt ${{runner.workspace}}/build/OutputFiles
+
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
         with:
