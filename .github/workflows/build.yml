@@ -75,3 +75,6 @@ jobs:
         with:
           name: project_output
           path: ${{runner.workspace}}/build/artifacts
+
+      - name: List where artifact is located
+          run: ls -halt ${{runner.workspace}}/
