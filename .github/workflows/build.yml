@@ -61,7 +61,7 @@ jobs:
         run: |
           ls -halt ${{runner.workspace}}/Algorithms-FinalProject
           sudo ls -alt ${{runner.workspace}}/build/OutputFiles
-          for FILE in ${{runner.workspace}}/build/OutputFiles/
+          for FILE in ${{runner.workspace}}/build/OutputFiles/*
           do
              echo $FILE
           done
