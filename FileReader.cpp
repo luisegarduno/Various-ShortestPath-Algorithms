@@ -101,14 +101,21 @@ void FileReader::addOutputFileSet(int fileID) {
         tempString.append("\\" + tempFilename);
         fstream newFile(tempString.c_str(), ios::out);    }
 
+        cout << fileID << endl;
+
     {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles\'" + tempFilename).c_str(), ios::out);    }
 
+    cout << fileID << endl;
+
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
         char tempString[] = "OutputFiles\\";
-        fstream newFile(strcat(tempString, tempFilename.c_str()), ios::out);    }
+        strcat(tempString, tempFilename.c_str());
+        fstream newFile(tempString, ios::out);    }
+
+    cout << fileID << endl;
 }
 
 // Returns total number of provided files
