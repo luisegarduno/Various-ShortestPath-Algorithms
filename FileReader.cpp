@@ -96,15 +96,19 @@ void FileReader::addOutputFileSet(int fileID) {
 
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile(("OutputFiles\\" + tempFilename).c_str(), ios::out);    }
+        string tempString;
+        tempString.append("OutputFiles");
+        tempString.append("\\" + tempFilename);
+        fstream newFile(tempString.c_str(), ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile( "OutputFiles\\'" + tempFilename, ios::out);    }
+        fstream newFile(("OutputFiles\'" + tempFilename).c_str(), ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile(("OutputFiles\\" + tempFilename).c_str(), ios::out);    }
+        char tempString[] = "OutputFiles\\";
+        fstream newFile(strcat(tempString, tempFilename.c_str()), ios::out);    }
 }
 
 // Returns total number of provided files
