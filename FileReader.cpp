@@ -93,7 +93,6 @@ void FileReader::setFileName(const char filename[]){
 void FileReader::addOutputFileSet(int fileID) {
     string tempFilename;
 
-
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         string tempString;
@@ -107,15 +106,13 @@ void FileReader::addOutputFileSet(int fileID) {
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles\'" + tempFilename).c_str(), ios::out);    }
 
-    cout << fileID << endl;
+        cout << fileID << endl;
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        char tempString[] = "OutputFiles\\";
-        strcat(tempString, tempFilename.c_str());
-        fstream newFile(tempString, ios::out);    }
+        fstream newFile((string("OutputFiles\\") + tempFilename).c_str(), ios::out);    }
 
-    cout << fileID << endl;
+        cout << fileID << endl;
 }
 
 // Returns total number of provided files
