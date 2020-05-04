@@ -91,19 +91,25 @@ void FileReader::setFileName(const char filename[]){
 
 // addOutputFileSet creates a set of 3 output files with a custom ID number at the front
 void FileReader::addOutputFileSet(int fileID) {
-    string tempFilename;
+    string tempFilename, tempLocation;
+    tempLocation.append("OutputFiles/\\");
+    tempLocation.pop_back();
+
     
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("OutputFiles\\/" + tempFilename, ios::out);    }
+        string location = tempLocation + tempFilename;
+        fstream newFile(location.c_str(), ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("OutputFiles/\\" + tempFilename, ios::out);    }
+        string location = tempLocation + tempFilename;
+        fstream newFile(location.c_str(), ios::out);    }
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile("OutputFiles/\"" + tempFilename, ios::out);    }
+        string location = tempLocation + tempFilename;
+        fstream newFile(location.c_str(), ios::out);    }
 }
 
 // Returns total number of provided files
