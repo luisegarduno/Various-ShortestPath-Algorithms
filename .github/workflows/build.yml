@@ -69,7 +69,7 @@ jobs:
             echo "  Copying $f"
             cp $f artifacts/
           done
-          cp -a ${{runner.workspace}}/build/OutputFiles ${{runner.workspace}}/build/artifacts
+          rsync -r OutputFiles/ artifacts
 
 
       - name: List where artifact is located 2
