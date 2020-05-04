@@ -50,6 +50,9 @@ private:
     // setter name for networksFile
     void setFileName(const char []);
 
+    // Creates data set (3 .txt files) with each set having a specific ID at the front of the filename
+    void addOutputFileSet(int);
+
     // inputFiles stores the string names of the given small, medium, and large network data files
     vector<string> inputFiles;
 
