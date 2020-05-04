@@ -64,7 +64,7 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
-          for f in $OUTPUT_FILES
+          for f in ${{runner.workspace}}/build/OutputFiles
           do
             echo "  Copying $f"
             cp $f artifacts/
