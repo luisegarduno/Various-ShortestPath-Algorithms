@@ -64,11 +64,13 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
-          for f in ${{runner.workspace}}/build/OutputFiles
+          for f in $OUTPUT_FILES
           do
             echo "  Copying $f"
-            cp -r $f artifacts/
+            cp $f artifacts/
           done
+          cp -a ${{runner.workspace}}/build/OutputFiles/. artifacts/
+
 
       - name: List where artifact is located 2
         run: ls -halt ${{runner.workspace}}/
@@ -81,6 +83,12 @@ jobs:
         with:
           name: project_output
           path: ${{runner.workspace}}/build/artifacts
+
+      - name: Upload output files to GitHub so they can be reviewed
+        uses: actions/upload-artifact@v2
+        with:
+          name: p_output
+          path: ${{runner.workspace}}/build/OutputFiles
 
       - name: List where artifact is located 2
         run: ls -halt ${{runner.workspace}}/
