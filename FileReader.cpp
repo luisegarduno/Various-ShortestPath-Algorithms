@@ -32,16 +32,16 @@ void FileReader::setCommands(const char argv[]) {
             inputFiles.push_back(filename);
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/1_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/1_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             fileCounter++;
         }
@@ -51,16 +51,16 @@ void FileReader::setCommands(const char argv[]) {
             inputFiles.push_back(filename);
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             fileCounter++;
         }
@@ -70,16 +70,16 @@ void FileReader::setCommands(const char argv[]) {
             inputFiles.push_back(filename);
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
+                fstream newFile("../" + tempFilename, ios::out);
+                outputFiles.push_back(tempFilename);    }
 
             fileCounter++;
         }
