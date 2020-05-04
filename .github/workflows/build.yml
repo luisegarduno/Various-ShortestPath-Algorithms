@@ -55,12 +55,6 @@ jobs:
         shell: bash
         run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
 
-      - name: Copy output files to artifact directory
-        working-directory: ${{runner.workspace}}/build
-        run: |
-          mkdir artifacts
-          sudo cp -a OutputFiles/ artifacts/
-
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
         with:

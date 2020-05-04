@@ -36,7 +36,6 @@ void FileReader::setCommands(const char argv[]) {
 
         addOutputFileSet(fileID);
         fileID++;
-
     }
 
     cfin.close();
