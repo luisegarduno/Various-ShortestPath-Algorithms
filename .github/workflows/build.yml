@@ -53,7 +53,7 @@ jobs:
         run: ls -al ${{runner.workspace}}/build
 
       - name: List where artifact is located
-        run: ls -halt ${{runner.workspace}}/
+        run: ls -halt ${{runner.workspace}}/Algorithms-FinalProject
         
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
@@ -65,6 +65,7 @@ jobs:
         run: |
           mkdir artifacts
           sudo ls -alt ${{runner.workspace}}/build/OutputFiles
+          sudo ls -halt ${{runner.workspace}}/Algorithms-FinalProject
           sudo cp -R ${{runner.workspace}}/build/OutputFiles artifacts/
           for f in $OUTPUT_FILES
           do
