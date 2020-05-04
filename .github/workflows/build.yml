@@ -49,19 +49,11 @@ jobs:
         shell: bash
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: cmake --build . --config $BUILD_TYPE
-
-      - name: List contents of build directory
-        run: ls -al ${{runner.workspace}}/build
         
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
         shell: bash
         run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
-
-      - name: List where artifact is located
-        run: |
-          ls -halt ${{runner.workspace}}
-          ls -halt ${{runner.workspace}}/Algorithms-FinalProject
 
       - name: Copy output files to artifact directory
         working-directory: ${{runner.workspace}}/build

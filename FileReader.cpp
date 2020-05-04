@@ -100,10 +100,12 @@ void FileReader::setFileName(const char filename[]){
 void FileReader::addOutputFileSet(int fileID) {
     string tempFilename;
 
-    FILE *fp;
-    mkdir("sample", 0777);
-    fp = fopen("OutputFiles/sample.txt", "w+");
-    fprintf(fp, "Hello World!!!");
+    //FILE *fp;
+    //mkdir("sample", 0777);
+    //fp = fopen("OutputFiles/sample.txt", "w+");
+    //fprintf(fp, "Hello World!!!");
+
+
 
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
@@ -122,7 +124,10 @@ void FileReader::addOutputFileSet(int fileID) {
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile((string("OutputFiles////\\/") + tempFilename).c_str(), ios::out);    }
+        std::system("cd OutputFiles");
+        fstream newFile((tempFilename).c_str(), ios::out);
+        std::system("cd ..");
+    }
 
         cout << fileID << endl;
 }
