@@ -67,7 +67,7 @@ jobs:
           for f in ${{runner.workspace}}/build/OutputFiles
           do
             echo "  Copying $f"
-            cp $f artifacts/
+            cp -r $f artifacts/
           done
 
       - name: List where artifact is located 2
