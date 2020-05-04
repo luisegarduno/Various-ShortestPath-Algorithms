@@ -69,6 +69,12 @@ jobs:
             echo "  Copying $f"
             cp $f artifacts/
           done
+
+      - name: List where artifact is located 2
+        run: ls -halt ${{runner.workspace}}/
+
+      - name: List where artifact is located 3
+        run: ls -halt ${{runner.workspace}}/build
         
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
@@ -76,5 +82,8 @@ jobs:
           name: project_output
           path: ${{runner.workspace}}/build/artifacts
 
-      - name: List where artifact is located
-          run: ls -halt ${{runner.workspace}}/
+      - name: List where artifact is located 2
+        run: ls -halt ${{runner.workspace}}/
+
+      - name: List where artifact is located 3
+        run: ls -halt ${{runner.workspace}}/build
