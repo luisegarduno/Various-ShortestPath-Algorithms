@@ -59,17 +59,8 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: |
           mkdir artifacts
+          sudo cp -a OutputFiles/ artifacts/
 
-          for f in $OUTPUT_FILES
-          do
-            echo "  Copying $f"
-            cp $f artifacts/
-          done
-
-      - name: List where artifact is located 3
-        run: |
-          ls -halt ${{runner.workspace}}/build
-          sudo ls -alt ${{runner.workspace}}/build/OutputFiles
 
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
