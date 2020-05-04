@@ -62,11 +62,6 @@ jobs:
         run: |
           ls -halt ${{runner.workspace}}/Algorithms-FinalProject
           sudo ls -alt ${{runner.workspace}}/build/OutputFiles
-          for FILE in ${{runner.workspace}}/build/OutputFiles/*
-          do
-             echo $FILE
-          done
-
 
       - name: Copy output files to artifact directory
         working-directory: ${{runner.workspace}}/build
@@ -81,8 +76,8 @@ jobs:
 
       - name: List where artifact is located 3
         run: |
+          ls ls -halt ${{runner.workspace}}
           ls -halt ${{runner.workspace}}/build
-          sudo ls -halt ${{runner.workspace}}/build/OutputFiles
 
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
