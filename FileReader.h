@@ -12,10 +12,13 @@
 #include <cstring>
 #include <iostream>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <bits/stdc++.h>
 
 using std::ios;
 using std::cout;
 using std::endl;
+using std::cerr;
 using std::string;
 using std::vector;
 using std::fstream;

@@ -13,8 +13,15 @@ void FileReader::setCommands(const char argv[]) {
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
-    if(!mkdir("OutputFiles",0)){
-        mkdir("OutputFiles", 0);
+    //if(!mkdir("OutputFiles",0)){
+      //  mkdir("OutputFiles", 0);
+    //}
+
+    if (mkdir("OutputFiles", 0777) == -1){
+        cerr << "Error :  " << strerror(errno) << endl;
+    }
+    else{
+        cout << "Directory created" << endl;
     }
 
     // Iterate through the file given in the command line and
@@ -96,21 +103,21 @@ void FileReader::addOutputFileSet(int fileID) {
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         string tempString;
-        tempString.append("OutputFiles");
-        tempString.append("\\" + tempFilename);
+        tempString.append("OutputFiles/");
+        tempString.append("\'" + tempFilename);
         fstream newFile(tempString.c_str(), ios::out);    }
 
         cout << fileID << endl;
 
     {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile(("OutputFiles\'" + tempFilename).c_str(), ios::out);    }
+        fstream newFile(("OutputFiles/\\" + tempFilename).c_str(), ios::out);    }
 
         cout << fileID << endl;
 
     {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
-        fstream newFile((string("OutputFiles\\") + tempFilename).c_str(), ios::out);    }
+        fstream newFile((string("OutputFiles////\\/") + tempFilename).c_str(), ios::out);    }
 
         cout << fileID << endl;
 }
