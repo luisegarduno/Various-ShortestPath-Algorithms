@@ -78,7 +78,7 @@ void FileReader::addOutputFileSet(int fileID) {
 
     // FILE *fp = fopen( ("OutputFiles/" + tempFilename).c_str(), "w+"); fclose(fp);
 
-    {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
+    {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 
@@ -86,9 +86,12 @@ void FileReader::addOutputFileSet(int fileID) {
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 
-    {   tempFilename = to_string(fileID) + "_Trivial.txt";
+    {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
+
+
+
 
 }
 
