@@ -13,8 +13,8 @@ void FileReader::setCommands(const char argv[]) {
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
-    if(!mkdir("OutputFiles",0)){
-        mkdir("OutputFiles", 0);
+    if (mkdir("OutputFiles", 0777) == -1){
+        cerr << "Error :  " << strerror(errno) << endl;
     }
 
     // Iterate through the file given in the command line and
@@ -22,67 +22,16 @@ void FileReader::setCommands(const char argv[]) {
     // Store input files and output file names in separate vectors
     string filename, tempFilename;
 
-    // fileCounter of type integer helps keep count just in case there are more than 3 inputted network data files
-    int fileCounter = 1;
+    // fileID of type integer helps keep count just in case there are more than 3 inputted network data files
+    int fileID = 1;
     while (!cfin.eof()) {
+
+        // Creates a set of 3 .txt files for each file
         cfin >> filename;
+        inputFiles.push_back(filename);
 
-        if(filename == "[Small_Input]"){
-            cfin >> filename;
-            inputFiles.push_back(filename);
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/1_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/1_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            fileCounter++;
-        }
-
-        if(filename == "[Medium_Input]"){
-            cfin >> filename;
-            inputFiles.push_back(filename);
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            fileCounter++;
-        }
-
-        if(filename == "[Large_Input]"){
-            cfin >> filename;
-            inputFiles.push_back(filename);
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_Trivial.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_BellmanFord.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            {   tempFilename = "OutputFiles/" + to_string(fileCounter) + "_FloydWarshall.txt";
-                fstream newFile(tempFilename, ios::out);
-                outputFiles.push_back(tempFilename);}
-
-            fileCounter++;
-        }
+        addOutputFileSet(fileID);
+        fileID++;
     }
 
     cfin.close();
@@ -120,6 +69,26 @@ void FileReader::setFileName(const char filename[]){
             exit(-1);
         }
     }
+
+}
+
+// addOutputFileSet creates a set of 3 output files with a custom ID number at the front
+void FileReader::addOutputFileSet(int fileID) {
+    string tempFilename;
+
+    // FILE *fp = fopen( ("OutputFiles/" + tempFilename).c_str(), "w+"); fclose(fp);
+
+    {   tempFilename = to_string(fileID) + "_Trivial.txt";
+        outputFiles.push_back(tempFilename);
+        fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
+
+    {   tempFilename = to_string(fileID) + "_BellmanFord.txt";
+        outputFiles.push_back(tempFilename);
+        fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
+
+    {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
+        outputFiles.push_back(tempFilename);
+        fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 }
 
 // Returns total number of provided files

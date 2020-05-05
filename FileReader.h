@@ -7,14 +7,20 @@
 
 #include <vector>
 #include <string>
+#include <cstdio>
+#include <cstdlib>
 #include <utility>
 #include <fstream>
+#include <cstring>
 #include <iostream>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <bits/stdc++.h>
 
 using std::ios;
 using std::cout;
 using std::endl;
+using std::cerr;
 using std::string;
 using std::vector;
 using std::fstream;
@@ -49,6 +55,9 @@ private:
 
     // setter name for networksFile
     void setFileName(const char []);
+
+    // Creates data set (3 .txt files) with each set having a specific ID at the front of the filename
+    void addOutputFileSet(int);
 
     // inputFiles stores the string names of the given small, medium, and large network data files
     vector<string> inputFiles;
