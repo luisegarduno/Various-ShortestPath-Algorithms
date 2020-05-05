@@ -3,8 +3,8 @@
 //
 
 #include <iostream>
-
 #include "FileReader.h"
+#include "NetworkFile.h"
 #include "MissingFilesException.h"
 
 using namespace std;
@@ -17,13 +17,18 @@ int main(int argc,char * argv[]){
             throw MissingFilesException{};
 
         else{
-            auto * networkFile = new FileReader();
-            networkFile->setCommands(argv[1]);
+            auto * newFiles = new FileReader();
+            newFiles->setCommands(argv[1]);
 
-            vector<string> input = networkFile->getInputFiles();
-            vector<string> output = networkFile->getOutputFiles();
+            for(auto i = newFiles->getInputFiles().begin(), j = newFiles->getOutputFiles().begin(); i != newFiles->getInputFiles().end(); ++i){
+                auto * networkSet = new NetworkFile<string>(*i);
+                networkSet->set_Output_files(*j++, *j++, *j++);
 
-            delete networkFile;
+                delete networkSet;
+            }
+
+
+            delete newFiles;
         }
     }
 

@@ -14,7 +14,7 @@ void FileReader::setCommands(const char argv[]) {
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
     if (mkdir("OutputFiles", 0777) == -1){
-        cerr << "Error :  " << strerror(errno) << endl;
+        cerr << "Error : " << strerror(errno) << " : 'OutputFiles' Folder" << endl;
     }
 
     // Iterate through the file given in the command line and
@@ -78,7 +78,7 @@ void FileReader::addOutputFileSet(int fileID) {
 
     // FILE *fp = fopen( ("OutputFiles/" + tempFilename).c_str(), "w+"); fclose(fp);
 
-    {   tempFilename = to_string(fileID) + "_Trivial.txt";
+    {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 
@@ -86,9 +86,10 @@ void FileReader::addOutputFileSet(int fileID) {
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 
-    {   tempFilename = to_string(fileID) + "_FloydWarshall.txt";
+    {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
+
 }
 
 // Returns total number of provided files
