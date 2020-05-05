@@ -7,13 +7,14 @@
 
 #include <string>
 #include <iostream>
+#include "Algorithm.h"
 
 using std::cout;
 using std::endl;
 using std::string;
 
 template<class T>
-class NetworkFile {
+class NetworkFile : public Algorithm<T>{
 
     private:
         // network_file holds the file path of the network data file
@@ -36,7 +37,7 @@ class NetworkFile {
         explicit NetworkFile(T);
 
         // Constructor that declares input file and 3 output files (w/ path)
-        NetworkFile(T,T,T,T);
+        explicit NetworkFile(T,T,T,T);
 
         // Copy constructor
         NetworkFile(const NetworkFile<T>&);
@@ -49,6 +50,7 @@ class NetworkFile {
 
         // Prints each filepath + filename
         void print();
+        ~NetworkFile();
 };
 
 // Default Constructor
@@ -57,7 +59,8 @@ NetworkFile<T>::NetworkFile()= default;
 
 // Constructor - Uses base initializer to declare add the appropriate path for the network file
 template<class T>
-NetworkFile<T>::NetworkFile(T network) : network_file("InputFiles/" + network){}
+NetworkFile<T>::NetworkFile(T network) : network_file("InputFiles/" + network){
+}
 
 // Constructor - Uses base initializers to declare and add the appropriate path for input and output file/s
 template<class T>
@@ -73,11 +76,16 @@ NetworkFile<T>::NetworkFile(const NetworkFile<T>& originalFiles) :
     network_file(originalFiles.get_Network_file()),
     trivial_file(originalFiles.get_Trivial_file()),
     bellman_ford_file(originalFiles.get_Bellman_Ford_file()),
-    floyd_warshall_file(originalFiles.get_Floyd_Warshall_file()){}
+    floyd_warshall_file(originalFiles.get_Floyd_Warshall_file()){
+    this->network_file = originalFiles.get_Network_file();
+            this->trivial_file = originalFiles.get_Trivial_file();
+            this->bellman_ford_file = originalFiles.get_Bellman_Ford_file();
+            this->floyd_warshall_file = originalFiles.get_Floyd_Warshall_file();
+    }
 
 // Returns name of input file containing all network data
 template<class T>
-T NetworkFile<T>::get_Network_file(){
+T NetworkFile<T>::get_Network_file() {
     return this->network_file;
 }
 
@@ -107,6 +115,11 @@ void NetworkFile<T>::print(){
     cout << get_Trivial_file() << endl;
     cout << get_Bellman_Ford_file() << endl;
     cout << get_Floyd_Warshall_file() << endl;
+}
+
+template<class T>
+NetworkFile<T>::~NetworkFile<T>() {
+    //cout << "Deallocating NetworkFile<T>" << endl;
 }
 
 #endif //ALGORITHMS_NETWORKFILE_H

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "FileReader.h"
 #include "NetworkFile.h"
+#include "Algorithm.h"
 #include "MissingFilesException.h"
 
 using namespace std;
@@ -23,9 +24,13 @@ int main(int argc,char * argv[]){
 
             // Iterate through input files  & create a NetworkFile object that holds corresponding output files
             for(auto i = newFiles->getInputFiles().begin(), j = newFiles->getOutputFiles().begin(); i != newFiles->getInputFiles().end(); ++i){
-                auto * networkSet = new NetworkFile<string>(*i, *j++, *j++, *j++);
+                //NetworkFile<string> networkSet(*i, *j++, *j++, *j++);
+                //Algorithm<string> * analyze(&networkSet);
+                //analyze->compute();
+                Algorithm<string> * analyze = new NetworkFile<string>(*i, *j++, *j++, *j++);
+                analyze->compute();
 
-                delete networkSet;
+                delete analyze;
             }
 
             delete newFiles;

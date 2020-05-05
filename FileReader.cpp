@@ -78,6 +78,8 @@ void FileReader::addOutputFileSet(int fileID) {
 
     // FILE *fp = fopen( ("OutputFiles/" + tempFilename).c_str(), "w+"); fclose(fp);
 
+
+
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
