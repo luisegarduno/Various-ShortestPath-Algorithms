@@ -12,6 +12,7 @@
 #include <cstring>
 #include "Vertex.h"
 #include "FileReader.h"
+#include "BellmanFord.h"
 #include <bits/stdc++.h>
 #include <unordered_map>
 
@@ -71,6 +72,7 @@ class Algorithm {
         virtual ~Algorithm();
 };
 
+
 // Default constructor
 template<class U>
 Algorithm<U>::Algorithm()= default;
@@ -88,7 +90,7 @@ void Algorithm<U>::compute(){
 
 template<class U>
 void Algorithm<U>::readNetworkFile(U networkFile) {
-    Graph<Vertex> graph;
+    //Graph<Vertex> graph;
     map_Vertex vertexOrder;
     vector<string> listOfVertex;
 
@@ -112,13 +114,19 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
         fin >> vertexNode_A >> vertexNode_B >> weight;
 
         Vertex newVertexNode(to_string(vertexNode_A), to_string(vertexNode_B), weight, false);
-        graph.add(newVertexNode);
+        networks.add(newVertexNode);
 
         Vertex newReversedVertexNode(to_string(vertexNode_B), to_string(vertexNode_A), weight, false);
-        graph.add(newReversedVertexNode);
+        networks.add(newReversedVertexNode);
     }
-    graph.printMatrix();
+
+    networks.printMatrix();
     fin.close();
+
+    int tempStart = 0;
+
+    //BellmanFord<string> * newAlgorithm = new BellmanFord<string>
+
 }
 
 

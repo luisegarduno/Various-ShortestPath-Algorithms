@@ -245,10 +245,7 @@ void LinkedList<T>::printMatrix(int x){
         }
 
         int currentX = stoi(aCurrent->getData()->getVertexNode_B());
-        while(aCurrent != nullptr){             // cycles & prints all values in linked list
-            //cout << "\n------------>> ";
-            //cout << stoi(aCurrent->getData()->getVertexNode_A()) << " " <<  stoi(aCurrent->getData()->getVertexNode_B()) << " " << aCurrent->getData()->getWeight();
-            //cout << "(" << counter <<")<<-----------" << endl;
+        while(aCurrent != nullptr){
             currentX = stoi(aCurrent->getData()->getVertexNode_B());
 
             if(currentX != counter){
