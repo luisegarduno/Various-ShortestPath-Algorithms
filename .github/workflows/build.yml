@@ -15,7 +15,7 @@ jobs:
   build:
     name: Project_Building
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 45
 
     steps:
 
