@@ -135,7 +135,7 @@ void FloydWarshall<W>::findShortestPath(Graph<Vertex>& thisGraph, int sourceNode
             // if the distance to the destination u can be shortened by taking the edge vertexA -> vertexB
             if (distance[vertexA] != INT_MAX && distance[vertexA] + edge_weight < distance[vertexB]){
                 //cout << distance[vertexA] << " != " <<  INT_MAX << " && " << distance[vertexA] << " + " << edge_weight << " < " << distance[vertexB] << endl;
-                cout << "Negative Weight Cycle" << endl;
+                //cout << "Negative Weight Cycle" << endl;
                 //return;
             }
 
