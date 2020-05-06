@@ -23,9 +23,11 @@ private:
     //ofstream fout;                  // Outputs to outputFile;
     //string filename;
     LinkedList< LinkedList<T> > graph;
+    int size = 0;
 
 public:
     Graph();
+    int graphSize();
     void add(T);
     LinkedList<T> &checkListOfVertexNodes(const string &);
     bool checkNetworkConnections(const string&,const string&, const LinkedList<T>&);
@@ -54,12 +56,14 @@ void Graph<T>::add(T newNode){
 
             if(!dataExists){
                 vertexLinkedList->append(newNode);                      // adds connection to Node
+                size++;
             }
         }
 
         else{
             LinkedList<T> newLinkedLinkedList;
             newLinkedLinkedList.append(newNode);
+            size++;
             graph.append(newLinkedLinkedList);                      // add this LinkedLinkedList to graph
         }
     }
@@ -67,6 +71,10 @@ void Graph<T>::add(T newNode){
     else{
         //cout << newNode.getVertexNode_A();
     }
+}
+template<class T>
+int Graph<T>::graphSize(){
+    return this->size;
 }
 
 template<class T>

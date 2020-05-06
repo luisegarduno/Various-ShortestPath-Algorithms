@@ -96,7 +96,7 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
 
     string vertexNode;
     char startBracket, endBracket;
-    int totalNumberOfVertex, totalNumberOfEdges, vertexNode_A, vertexNode_B, weight;
+    int totalNumberOfVertex, totalNumberOfEdges, vertexNode_A, vertexNode_B, weight, edgeCounter = 0;
 
     setFileName(networkFile);
 
@@ -120,12 +120,13 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
         networks.add(newReversedVertexNode);
     }
 
-    networks.printMatrix();
+    //networks.printMatrix();
     fin.close();
 
-    int tempStart = 0;
-
-    //BellmanFord<string> * newAlgorithm = new BellmanFord<string>
+    int tempStart = 1;
+    auto * newAlgorithm = new BellmanFord<string>(get_Bellman_Ford_file());
+    newAlgorithm->findShortestPath(networks, tempStart, totalNumberOfVertex + 1);
+    delete newAlgorithm;
 
 }
 
