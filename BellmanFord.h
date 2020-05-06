@@ -123,6 +123,7 @@ void BellmanFord<V>::findShortestPath(Graph<Vertex>& thisGraph, int sourceNode, 
         int n = children_iterator.getListSize();
         magic_nodes.pop();
 
+
         for(int it = 1; it <= n; it++){
 
             // edge from vertexA, vertexB, weight
@@ -130,11 +131,11 @@ void BellmanFord<V>::findShortestPath(Graph<Vertex>& thisGraph, int sourceNode, 
             vertexB = stoi(children_iterator.getIterator().getVertexNode_B());
             edge_weight = children_iterator.getIterator().getWeight();
 
-            // if the distance to the destination u can be
-            // shortened by taking the edge u-> v
+            // if the distance to the destination u can be shortened by taking the edge vertexA -> vertexB
             if (distance[vertexA] != INT_MAX && distance[vertexA] + edge_weight < distance[vertexB]){
+                //cout << distance[vertexA] << " != " <<  INT_MAX << " && " << distance[vertexA] << " + " << edge_weight << " < " << distance[vertexB] << endl;
                 cout << "Negative Weight Cycle";
-                return;
+                //return;
             }
 
             if(vertex_values[children_iterator.getIterator().getVertexNode_B()] == 0){
