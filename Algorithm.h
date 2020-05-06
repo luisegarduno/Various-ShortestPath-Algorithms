@@ -15,6 +15,7 @@
 #include "BellmanFord.h"
 #include <bits/stdc++.h>
 #include <unordered_map>
+#include "FloydWarshall.h"
 
 
 using std::ios;
@@ -124,9 +125,17 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
     fin.close();
 
     int tempStart = 1;
-    auto * newAlgorithm = new BellmanFord<string>(get_Bellman_Ford_file());
-    newAlgorithm->findShortestPath(networks, tempStart, totalNumberOfVertex + 1);
-    delete newAlgorithm;
+
+    auto * bellman_ford = new BellmanFord<string>(get_Bellman_Ford_file());
+    bellman_ford->findShortestPath(networks, tempStart, totalNumberOfVertex + 1);
+    delete bellman_ford;
+
+    for(int i = 1; i < totalNumberOfVertex; i++) {
+        auto * floyd_warshall = new FloydWarshall<string>(get_Floyd_Warshall_file());
+        floyd_warshall->findShortestPath(networks, i, totalNumberOfVertex + 1);
+        delete floyd_warshall;
+    }
+
 }
 
 
