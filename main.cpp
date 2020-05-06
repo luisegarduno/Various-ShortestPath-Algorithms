@@ -24,13 +24,11 @@ int main(int argc,char * argv[]){
 
             // Iterate through input files  & create a NetworkFile object that holds corresponding output files
             for(auto i = newFiles->getInputFiles().begin(), j = newFiles->getOutputFiles().begin(); i != newFiles->getInputFiles().end(); ++i){
-                //NetworkFile<string> networkSet(*i, *j++, *j++, *j++);
-                //Algorithm<string> * analyze(&networkSet);
-                //analyze->compute();
                 Algorithm<string> * analyze = new NetworkFile<string>(*i, *j++, *j++, *j++);
                 analyze->compute();
 
                 delete analyze;
+                break;
             }
 
             delete newFiles;

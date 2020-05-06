@@ -1,18 +1,16 @@
 //
 // Created by luise on 5/3/2020.
 //
-
 #include "Vertex.h"
-
 #include <utility>
 
-Vertex::Vertex() : vertex(""), predecessor(""), weight(0), visitedFlag(false){
+Vertex::Vertex() : vertexA(""), vertexB(""), weight(0), visitedFlag(false){
 }
 
-Vertex::Vertex(string newVertex) : vertex(move(newVertex)), predecessor(""), weight(0), visitedFlag(false){
+Vertex::Vertex(string newVertex) : vertexA(move(newVertex)), vertexB(""), weight(0), visitedFlag(false){
 }
 
-Vertex::Vertex(string node1, string node2, int between, bool hasVisited) : vertex(move(node1)) , predecessor(move(node2)){
+Vertex::Vertex(string nodeA, string nodeB, int between, bool hasVisited) : vertexA(move(nodeA)) , vertexB(move(nodeB)){
     this->weight = between;
     this->visitedFlag = hasVisited;
 }
@@ -22,27 +20,27 @@ Vertex::Vertex(const Vertex& originalVertex){
 }
 
 Vertex* Vertex::operator=(const Vertex* originalVertex){
-    setVertexNode(originalVertex->vertex);
-    setPredecessorNode(originalVertex->predecessor);
+    setVertexNode_A(originalVertex->vertexA);
+    setVertexNode_B(originalVertex->vertexB);
     setWeight(originalVertex->weight);
     setVisitedFlag(originalVertex->visitedFlag);
     return this;
 }
 
 Vertex& Vertex::operator=(const Vertex& originalVertex){
-    setVertexNode(originalVertex.vertex);
-    setPredecessorNode(originalVertex.predecessor);
+    setVertexNode_A(originalVertex.vertexA);
+    setVertexNode_B(originalVertex.vertexB);
     setWeight(originalVertex.weight);
     setVisitedFlag(originalVertex.visitedFlag);
     return *this;
 }
 
-void Vertex::setVertexNode(string newVertex){
-    this->vertex = move(newVertex);
+void Vertex::setVertexNode_A(string newVertexA){
+    this->vertexA = move(newVertexA);
 }
 
-void Vertex::setPredecessorNode(string newPredecessor){
-    this->predecessor = move(newPredecessor);
+void Vertex::setVertexNode_B(string newVertexB){
+    this->vertexB = move(newVertexB);
 }
 
 void Vertex::setWeight(int newWeight){
@@ -53,15 +51,15 @@ void Vertex::setVisitedFlag(bool newVisitedFlag){
     this->visitedFlag = newVisitedFlag;
 }
 
-string Vertex::getVertexNode(){
-    return vertex;
+string Vertex::getVertexNode_A(){
+    return vertexA;
 }
 
-string Vertex::getPredecessorNode(){
-    return predecessor;
+string Vertex::getVertexNode_B(){
+    return vertexB;
 }
 
-int Vertex::getWeightNode(){
+int Vertex::getWeight(){
     return weight;
 }
 

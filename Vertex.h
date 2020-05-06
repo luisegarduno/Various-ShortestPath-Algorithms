@@ -5,44 +5,45 @@
 #ifndef ALGORITHMS_VERTEX_H
 #define ALGORITHMS_VERTEX_H
 
-
 #include <string>
+#include <vector>
 #include <iostream>
 
 using std::cout;
 using std::endl;
 using std::move;
+using std::pair;
+using std::vector;
 using std::string;
+using VerticePair = pair<string,string>;
 
 class Vertex {
-    private:
-        string vertex;
-        string predecessor;
-        int weight{};
-        bool visitedFlag{};
+private:
+    vector<string> vertices;
+    vector< pair< VerticePair, int> > edges;
+    string vertexA;
+    string vertexB;
+    int    weight{};
+    bool   visitedFlag{};
 
-    public:
-        Vertex();
+public:
+    Vertex();
+    explicit Vertex(string);
+    Vertex(string,string,int,bool);
+    Vertex(const Vertex&);
+    Vertex& operator=(const Vertex&);
+    Vertex* operator=(const Vertex*);
 
-        Vertex(string);
+    void setVertexNode_A(string);
+    void setVertexNode_B(string);
+    void setWeight(int);
+    void setVisitedFlag(bool);
+    void addVertex(string);
 
-        Vertex(string, string, int, bool);
-
-        Vertex(const Vertex &);
-
-        Vertex &operator=(const Vertex &);
-
-        Vertex *operator=(const Vertex *);
-
-        void setVertexNode(string);
-        void setPredecessorNode(string);
-        void setWeight(int);
-        void setVisitedFlag(bool);
-
-        string getVertexNode();
-        string getPredecessorNode();
-        int getWeightNode();
-        bool getVisitedFlag();
+    string getVertexNode_A();
+    string getVertexNode_B();
+    int    getWeight();
+    bool   getVisitedFlag();
 };
 
 

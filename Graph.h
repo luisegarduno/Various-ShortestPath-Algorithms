@@ -35,6 +35,7 @@ public:
     //void setOutputFileName(const string&);
     //string getOutputFileName();
     void printGraph();
+    void printMatrix();
 };
 
 template <class T>
@@ -124,8 +125,7 @@ template<class T>
 void Graph<T>::printGraph(){
 
     Node< LinkedList<T> >* currentLinkedList = graph.getLinkedList_head();
-    cout << "---------------------------------- Directed Graph ----------------------------------------" << endl;
-    cout << endl;
+
     cout << "----------------------------- Format: Vertex (Weight) ------------------------------------" << endl << endl;
     while(currentLinkedList != nullptr){
         cout << currentLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A() << " --> ";
@@ -136,6 +136,36 @@ void Graph<T>::printGraph(){
         }
     }
     cout << "------------------------------------------------------------------------------------------- " << endl;
+}
+
+template<class T>
+void Graph<T>::printMatrix(){
+    cout << "----------------------------- Format: Vertex(Weight) ------------------------------------" << endl << endl;
+    Node< LinkedList<T> >* tempLinkedList = graph.getLinkedList_head();
+    int counter = 1;
+    cout << "    " << std::setw(3) << std::left << "";
+    while(tempLinkedList != nullptr){
+        cout << std::setw(4) << std::left << tempLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A() ;
+        tempLinkedList = tempLinkedList->getNextNode();
+        if(tempLinkedList != nullptr){
+            counter++;
+        }
+    }
+    cout << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------" << endl;
+
+    Node< LinkedList<T> >* currentLinkedList = graph.getLinkedList_head();
+
+    while(currentLinkedList != nullptr){
+        cout << std::setw(4) << std::left << currentLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A() << "|  ";
+        currentLinkedList->getData()->printMatrix(counter);
+        currentLinkedList = currentLinkedList->getNextNode();
+        if(currentLinkedList != nullptr){
+            cout << endl;
+        }
+    }
+    cout << "------------------------------------------------------------------------------------------- " << endl;
+
 }
 
 

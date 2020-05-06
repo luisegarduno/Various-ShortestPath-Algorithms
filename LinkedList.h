@@ -6,6 +6,7 @@
 #define ALGORITHMS_LINKEDLIST_H
 
 #include "Node.h"
+#include <iomanip>
 #include <iostream>
 
 using std::cout;
@@ -29,6 +30,7 @@ public:
     LinkedList(const LinkedList<T>&);
 
     void print();                   // print all values in Linked List
+    void printMatrix(int);          // prints matrix
     void clear();                   // Clears the Linked List, also used to destruct memory from heap
     void append(T);                 // add node to Linked List
     void removeAt(int);             // remove specific index value (passed in parameter)
@@ -217,10 +219,58 @@ void LinkedList<T>::print(){
         while(aCurrent != nullptr){             // cycles & prints all values in linked list
             cout << aCurrent->getData()->getVertexNode_B() << " (";
             cout << aCurrent->getData()->getWeight() << ")";
-            cout << aCurrent->getData()->getVisitedFlag() << ") ";
             aCurrent = aCurrent->getNextNode();
             if(aCurrent != nullptr){
                 cout << "--> ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+template<class T>
+void LinkedList<T>::printMatrix(int x){
+    if(head == nullptr){
+        cout << "Nothing Available" << endl;
+    }
+
+    else{
+        Node<T>* aCurrent = head;
+        int counter = 1;
+        int current = stoi(aCurrent->getData()->getVertexNode_A());
+
+        if(current == 1){
+            cout << std::setw(4) << std::left << current;
+            counter++;
+        }
+
+        int currentX = stoi(aCurrent->getData()->getVertexNode_B());
+        while(aCurrent != nullptr){             // cycles & prints all values in linked list
+            //cout << "\n------------>> ";
+            //cout << stoi(aCurrent->getData()->getVertexNode_A()) << " " <<  stoi(aCurrent->getData()->getVertexNode_B()) << " " << aCurrent->getData()->getWeight();
+            //cout << "(" << counter <<")<<-----------" << endl;
+            currentX = stoi(aCurrent->getData()->getVertexNode_B());
+
+            if(currentX != counter){
+                while(currentX != counter){
+                    cout << std::setw(4) << std::left << "0";
+                    counter++;
+                }
+            }
+
+            if(currentX == counter){
+                cout << std::setw(4) << std::left << aCurrent->getData()->getWeight();
+                counter++;
+            }
+
+            aCurrent = aCurrent->getNextNode();
+
+            if(aCurrent == nullptr){
+                while(counter != x + 1){
+                    cout << std::setw(4) << std::left << "0";
+                    counter++;
+                }
+                aCurrent == nullptr;
             }
         }
         cout << endl;
