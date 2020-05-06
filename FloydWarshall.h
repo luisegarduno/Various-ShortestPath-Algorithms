@@ -147,7 +147,7 @@ void FloydWarshall<W>::findShortestPath(Graph<Vertex>& thisGraph, int sourceNode
         }
     }
 
-    fout.open(floyd_warshall_file.c_str());
+    fout.open(floyd_warshall_file.c_str(), std::ios::app);
     if(!fout.is_open()){
         cout << "'" << floyd_warshall_file << "' could not be opened. Please check input files." << endl;
         exit(-1);
