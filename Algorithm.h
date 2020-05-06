@@ -116,8 +116,8 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
         Vertex newVertexNode(to_string(vertexNode_A), to_string(vertexNode_B), weight, false);
         networks.add(newVertexNode);
 
-        Vertex newReversedVertexNode(to_string(vertexNode_B), to_string(vertexNode_A), weight, false);
-        networks.add(newReversedVertexNode);
+        //Vertex newReversedVertexNode(to_string(vertexNode_B), to_string(vertexNode_A), weight, false);
+        //networks.add(newReversedVertexNode);
     }
 
     //networks.printMatrix();
@@ -127,7 +127,6 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
     auto * newAlgorithm = new BellmanFord<string>(get_Bellman_Ford_file());
     newAlgorithm->findShortestPath(networks, tempStart, totalNumberOfVertex + 1);
     delete newAlgorithm;
-
 }
 
 
