@@ -1,2 +1,1 @@
 moreno_kangaroo.txt
-moreno_macaques.txt
