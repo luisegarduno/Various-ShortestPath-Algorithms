@@ -4,12 +4,28 @@
 
 #include "FileReader.h"
 
+#include <utility>
+
 // Default constructor
-FileReader::FileReader(): networkFile(""){
+FileReader::FileReader(): networkFile(""), totDocsFound(0) {
+    fileIsValidFlag = true;
+    auto inputFiles_folder = "InputFiles/";
+    //filesystem::path file_name("../InputFiles/networks.txt");// file_name = inputFiles_folder;
+    filesystem::path file_name = inputFiles_folder;
+
+    if (file_name == "") {
+        cout << "Directory Error: Invalid path to a folder, exiting..." << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    parseCurrentFile(file_name);
+
+    string networkFiles = file_name.generic_string() + "networks.txt";
+    setCommands(networkFiles);
 }
 
-void FileReader::setCommands(const char argv[]) {
-    setFileName(argv);
+void FileReader::setCommands(string file_name) {
+    setFileName(std::move(file_name));
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
@@ -28,10 +44,13 @@ void FileReader::setCommands(const char argv[]) {
 
         // Creates a set of 3 .txt files for each file
         cfin >> filename;
-        inputFiles.push_back(filename);
+        if(tempFilename != filename){
+            inputFiles.push_back(filename);
 
-        addOutputFileSet(fileID);
-        fileID++;
+            addOutputFileSet(fileID);
+            fileID++;
+        }
+        tempFilename = filename;
     }
 
     cfin.close();
@@ -39,8 +58,8 @@ void FileReader::setCommands(const char argv[]) {
 
 // setFileName sets the given file name in the command line to the main file as well as checking if it is the
 // correct format type.
-void FileReader::setFileName(const char filename[]){
-    networkFile = filename;
+void FileReader::setFileName(string filename){
+    networkFile = std::move(filename);
 
     int outputFilename_size  = networkFile.size();
 
@@ -92,9 +111,6 @@ void FileReader::addOutputFileSet(int fileID) {
         outputFiles.push_back(tempFilename);
         fstream newFile(("OutputFiles/" + tempFilename).c_str(), ios::out);  }
 
-
-
-
 }
 
 // Returns total number of provided files
@@ -114,6 +130,59 @@ vector<string>& FileReader::getInputFiles(){
 // Returns outputFiles vector as reference
 vector<string>& FileReader::getOutputFiles(){
     return this->outputFiles;
+}
+
+int FileReader::getTotDocsFound(){
+    if(totDocsFound > 0){
+        return totDocsFound;
+    }
+
+    return 0;
+}
+
+void FileReader::parseCurrentFile(const filesystem::path& fileName){
+    filesystem::directory_iterator end;
+    fstream fout;
+
+    string networksData_Files = fileName.generic_string() + "networks.txt";
+    fout.open(networksData_Files.c_str(), std::ios::out);
+    if (!fout.is_open()) {
+        cout << "'" << networksData_Files << "' could not be opened. Please check input files." << endl;
+        exit(-1);
+    }
+    string tempFile;
+
+    for(filesystem::directory_iterator theIterator(fileName) ; theIterator!= end; ++theIterator){
+        // directory iterator is first converted to a path
+        filesystem::path dirToPath = *theIterator;
+        tempFile = dirToPath.generic_string();
+        if(tempFile != "InputFiles/networks.txt"){
+            tempFile = "/" + parsePathName(tempFile);
+            tempFile = parsePathName(tempFile);
+            tempFile.erase(0,1);
+            fout << tempFile << endl;
+        }
+    }
+    fout.close();
+}
+
+string FileReader::parsePathName(string section){
+    for(size_t start = 0; start < section.size(); start++){
+        if(section[start] == '/'){
+            size_t end = start + 1;
+
+            while(section[end] != '/' && end < section.size()){
+                end++;
+                if(end == section.size()){
+                    return section;
+                }
+            }
+            section.erase(start, end - start);
+            start--;
+        }
+    }
+
+    return section;
 }
 
 // FileReader destructor
