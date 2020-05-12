@@ -117,8 +117,8 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
         Vertex newVertexNode(to_string(vertexNode_A), to_string(vertexNode_B), weight, false);
         networks.add(newVertexNode);
 
-        //Vertex newReversedVertexNode(to_string(vertexNode_B), to_string(vertexNode_A), weight, false);
-        //networks.add(newReversedVertexNode);
+        Vertex newReversedVertexNode(to_string(vertexNode_B), to_string(vertexNode_A), weight, false);
+        networks.add(newReversedVertexNode);
     }
 
     //networks.printMatrix();
@@ -130,11 +130,9 @@ void Algorithm<U>::readNetworkFile(U networkFile) {
     bellman_ford->findShortestPath(networks, tempStart, totalNumberOfVertex + 1);
     delete bellman_ford;
 
-    for(int i = 1; i < totalNumberOfVertex; i++) {
-        auto * floyd_warshall = new FloydWarshall<string>(get_Floyd_Warshall_file());
-        floyd_warshall->findShortestPath(networks, i, totalNumberOfVertex + 1);
-        delete floyd_warshall;
-    }
+    auto * floyd_warshall = new FloydWarshall<string>(get_Floyd_Warshall_file());
+    floyd_warshall->findShortestPath(networks, totalNumberOfVertex + 1);
+    delete floyd_warshall;
 
 }
 

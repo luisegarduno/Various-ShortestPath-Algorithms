@@ -151,16 +151,25 @@ void BellmanFord<V>::findShortestPath(Graph<Vertex>& thisGraph, int sourceNode, 
         cout << "'" << bellman_ford_file << "' could not be opened. Please check input files." << endl;
         exit(-1);
     }
+    Graph<Vertex> graphs;
 
     for (int s = 1; s < numOfNodes; s++){
         fout << "Total Distance   " ;
         fout << "[" << sourceNode << "] : ";
         fout << std::setw(5) << std::left << "[" + to_string(s) + "]";
         fout << std::setw(6) << std::right << "  -->  " <<  std::setw(7) << std::left << distance[s];
+
+        Vertex temp (to_string(sourceNode), to_string(s), distance[s],false);
+        graphs.add(temp);
+
+        Vertex temps (to_string(s), to_string(sourceNode), distance[s],false);
+        graphs.add(temps);
+
         fout << std::setw(30) << std::right <<  "Shortest Path : [ ";
         writeToFile(parent, s);
         fout << "]" << '\n';
     }
+    //graphs.printMatrix();
     fout.close();
     fout.clear();
 }

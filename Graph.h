@@ -38,6 +38,10 @@ public:
     //string getOutputFileName();
     void printGraph();
     void printMatrix();
+
+    void outputGraph_ToFile(string);
+    void outputMatrix_ToFile(string);
+
 };
 
 template <class T>
@@ -148,7 +152,7 @@ void Graph<T>::printGraph(){
 
 template<class T>
 void Graph<T>::printMatrix(){
-    cout << "----------------------------- Format: Vertex(Weight) ------------------------------------" << endl << endl;
+    cout << "--> FORMAT : MATRIX" << endl << endl;
     Node< LinkedList<T> >* tempLinkedList = graph.getLinkedList_head();
     int counter = 1;
     cout << "    " << std::setw(3) << std::left << "";
@@ -160,7 +164,13 @@ void Graph<T>::printMatrix(){
         }
     }
     cout << endl;
-    cout << "-----------------------------------------------------------------------------------------------------------" << endl;
+
+
+    cout << "------";
+    for(int i = 0; i < counter; i++){
+        cout << "----";
+    }
+    cout << endl;
 
     Node< LinkedList<T> >* currentLinkedList = graph.getLinkedList_head();
 
@@ -172,8 +182,88 @@ void Graph<T>::printMatrix(){
             cout << endl;
         }
     }
-    cout << "------------------------------------------------------------------------------------------- " << endl;
 
+    cout << "------";
+    for(int i = 0; i < counter; i++){
+        cout << "----";
+    }
+    cout << endl;
+}
+
+template<class T>
+void Graph<T>::outputGraph_ToFile(string outputFile){
+    fstream fout;
+    fout.open(outputFile.c_str(), std::ios::app);
+    if (!fout.is_open()) {
+        cout << "'" << outputFile << "' could not be opened. Please check input files." << endl;
+        exit(-1);
+    }
+
+
+    Node< LinkedList<T> >* currentLinkedList = graph.getLinkedList_head();
+
+    fout << "\n--> FORMAT : DIRECTED GRAPH" << endl << endl;
+    while(currentLinkedList != nullptr){
+        fout << currentLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A() << " --> ";
+        currentLinkedList->getData()->printGraph_ToFile(fout);
+        currentLinkedList = currentLinkedList->getNextNode();
+        if(currentLinkedList != nullptr){
+            fout << endl;
+        }
+    }
+
+    fout.close();
+    fout.clear();
+}
+
+template<class T>
+void Graph<T>::outputMatrix_ToFile(string outputFile){
+    fstream fout;
+    fout.open(outputFile.c_str(), std::ios::app);
+    if (!fout.is_open()) {
+        cout << "'" << outputFile << "' could not be opened. Please check input files." << endl;
+        exit(-1);
+    }
+
+    fout << "\n--> FORMAT : MATRIX" << endl << endl;
+    Node< LinkedList<T> >* tempLinkedList = graph.getLinkedList_head();
+    int counter = 1;
+    fout << "    " << std::setw(3) << std::left << "";
+    while(tempLinkedList != nullptr){
+        fout << std::setw(4) << std::left << tempLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A();
+        tempLinkedList = tempLinkedList->getNextNode();
+        if(tempLinkedList != nullptr){
+            counter++;
+        }
+    }
+    fout << endl;
+
+
+    fout << "------";
+    for(int i = 0; i < counter; i++){
+        fout << "----";
+    }
+    fout << endl;
+
+    Node< LinkedList<T> >* currentLinkedList = graph.getLinkedList_head();
+
+    while(currentLinkedList != nullptr){
+        fout << std::setw(4) << std::left << currentLinkedList->getData()->getLinkedList_head()->getData()->getVertexNode_A() << "|  ";
+        currentLinkedList->getData()->printMatrix_ToFile(fout,counter);
+        currentLinkedList = currentLinkedList->getNextNode();
+        if(currentLinkedList != nullptr){
+            fout << endl;
+        }
+    }
+
+    fout << "------";
+    for(int i = 0; i < counter; i++){
+        fout << "----";
+    }
+    fout << endl;
+
+    fout.close();
+    fout.clear();
 }
 
 

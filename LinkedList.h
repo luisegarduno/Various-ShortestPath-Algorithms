@@ -7,9 +7,11 @@
 
 #include "Node.h"
 #include <iomanip>
+#include <fstream>
 #include <iostream>
 
 using std::cout;
+using std::fstream;
 using std::endl;
 
 template<class T>
@@ -31,6 +33,9 @@ public:
 
     void print();                   // print all values in Linked List
     void printMatrix(int);          // prints matrix
+    void printGraph_ToFile(fstream&);
+    void printMatrix_ToFile(fstream&,int);
+
     void clear();                   // Clears the Linked List, also used to destruct memory from heap
     void append(T);                 // add node to Linked List
     void removeAt(int);             // remove specific index value (passed in parameter)
@@ -235,42 +240,149 @@ void LinkedList<T>::printMatrix(int x){
     }
 
     else{
-        Node<T>* aCurrent = head;
+        Node<T>* vertex_Iterator = head;
         int counter = 1;
-        int current = stoi(aCurrent->getData()->getVertexNode_A());
+        int vertexNode_A = stoi(vertex_Iterator->getData()->getVertexNode_A());
 
-        if(current == 1){
-            cout << std::setw(4) << std::left << current;
-            counter++;
-        }
+        while(vertex_Iterator != nullptr){
+            int vertexNode_B = stoi(vertex_Iterator->getData()->getVertexNode_B());
 
-        int currentX = stoi(aCurrent->getData()->getVertexNode_B());
-        while(aCurrent != nullptr){
-            currentX = stoi(aCurrent->getData()->getVertexNode_B());
-
-            if(currentX != counter){
-                while(currentX != counter){
+            if(vertexNode_A == vertexNode_B || vertexNode_A == counter){
+                if(vertexNode_A == counter){
                     cout << std::setw(4) << std::left << "0";
+                    counter++;
+                    vertex_Iterator = vertex_Iterator->getNextNode();
+                    continue;
+                }
+            }
+
+            else if(vertexNode_B < counter){
+                if(counter > x){
+                    counter = vertexNode_A + 1;
+                }
+                //cout << to_string(vertexNode_A) + ":" + to_string(vertexNode_B) + ":" + to_string(counter) + " ";
+                //counter++;
+            }
+
+
+            if(vertexNode_B != counter){
+                while(vertexNode_A != counter && counter <= x){
+                    //cout << std::setw(4) << std::left << "INF" << to_string(vertexNode_A) + ":" << to_string(vertexNode_B) + ":" + to_string(counter);
                     counter++;
                 }
             }
 
-            if(currentX == counter){
-                cout << std::setw(4) << std::left << aCurrent->getData()->getWeight();
-                counter++;
+            else if(vertexNode_B == counter){
+                if(vertex_Iterator->getData()->getWeight() == INT_MAX){
+                    cout << std::setw(4) << std::left << "INF";
+                    counter++;
+                }
+                else if(vertex_Iterator->getData()->getWeight() != INT_MAX) {
+                    cout << std::setw(4) << std::left << vertex_Iterator->getData()->getWeight();
+                    counter++;
+                }
+
+                if(counter > x){
+                    break;
+                }
             }
 
-            aCurrent = aCurrent->getNextNode();
+            vertex_Iterator = vertex_Iterator->getNextNode();
 
-            if(aCurrent == nullptr){
-                while(counter != x + 1){
+            if(vertex_Iterator == nullptr){
+                while(counter <= x){
                     cout << std::setw(4) << std::left << "0";
                     counter++;
                 }
-                aCurrent == nullptr;
+                vertex_Iterator == nullptr;
             }
         }
         cout << endl;
+    }
+}
+
+template<class T>
+void LinkedList<T>::printGraph_ToFile(fstream& fout){
+    if(head == nullptr){
+        fout << "Nothing Available" << endl;
+    }
+
+    else{
+        Node<T>* aCurrent = head;
+
+        while(aCurrent != nullptr){             // cycles & prints all values in linked list
+            fout << aCurrent->getData()->getVertexNode_B() << " (";
+            fout << aCurrent->getData()->getWeight() << ")";
+            aCurrent = aCurrent->getNextNode();
+            if(aCurrent != nullptr){
+                fout << "--> ";
+            }
+        }
+        fout << endl;
+    }
+}
+
+template<class T>
+void LinkedList<T>::printMatrix_ToFile(fstream& fout, int x){
+
+    if(head == nullptr){
+        fout << "Nothing Available" << endl;
+    }
+
+    else{
+        Node<T>* vertex_Iterator = head;
+        int counter = 1;
+        int vertexNode_A = stoi(vertex_Iterator->getData()->getVertexNode_A());
+
+        while(vertex_Iterator != nullptr){
+            int vertexNode_B = stoi(vertex_Iterator->getData()->getVertexNode_B());
+
+            if(vertexNode_A == vertexNode_B || vertexNode_A == counter){
+                if(vertexNode_A == counter){
+                    fout << std::setw(4) << std::left << "0";
+                    counter++;
+                    vertex_Iterator = vertex_Iterator->getNextNode();
+                    continue;
+                }
+            }
+
+            else if(vertexNode_B < counter){
+                if(counter > x){
+                    counter = vertexNode_A + 1;
+                }
+            }
+
+            if(vertexNode_B != counter){
+                while(vertexNode_A != counter && counter <= x){
+                    counter++;
+                }
+            }
+
+            else if(vertexNode_B == counter){
+                if(vertex_Iterator->getData()->getWeight() == INT_MAX){
+                    fout << std::setw(4) << std::left << "INF";
+                    counter++;
+                }
+                else if(vertex_Iterator->getData()->getWeight() != INT_MAX) {
+                    fout << std::setw(4) << std::left << vertex_Iterator->getData()->getWeight();
+                    counter++;
+                }
+                if(counter > x){
+                    break;
+                }
+            }
+
+            vertex_Iterator = vertex_Iterator->getNextNode();
+
+            if(vertex_Iterator == nullptr){
+                while(counter <= x){
+                    fout << std::setw(4) << std::left << "0";
+                    counter++;
+                }
+                vertex_Iterator == nullptr;
+            }
+        }
+        fout << endl;
     }
 }
 
