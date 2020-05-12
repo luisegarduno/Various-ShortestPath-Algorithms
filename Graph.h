@@ -6,9 +6,9 @@
 #define ALGORITHMS_GRAPH_H
 
 #include "Node.h"
+#include "Edge.h"
 #include <fstream>
 #include <iostream>
-#include "Edge.h"
 #include "LinkedList.h"
 
 using std::cout;
@@ -18,29 +18,23 @@ using std::ofstream;
 
 template<class T>
 class Graph{
+    private:
+        LinkedList< LinkedList<T> > graph;
+        int size = 0;
 
-private:
-    //ofstream fout;                  // Outputs to outputFile;
-    //string filename;
-    LinkedList< LinkedList<T> > graph;
-    int size = 0;
+    public:
+        Graph();
+        void add(T);
+        int graphSize();
+        LinkedList<T> getAllNodes(const string&);
+        LinkedList<T> &checkListOfVertexNodes(const string &);
+        bool checkNetworkConnections(const string&,const string&, const LinkedList<T>&);
 
-public:
-    Graph();
-    int graphSize();
-    void add(T);
-    LinkedList<T> &checkListOfVertexNodes(const string &);
-    bool checkNetworkConnections(const string&,const string&, const LinkedList<T>&);
-    LinkedList<T> getAllNodes(const string&);
+        void printGraph();
+        void printMatrix();
 
-
-    //void setOutputFileName(const string&);
-    //string getOutputFileName();
-    void printGraph();
-    void printMatrix();
-
-    void outputGraph_ToFile(string);
-    void outputMatrix_ToFile(string);
+        void outputGraph_ToFile(const string&);
+        void outputMatrix_ToFile(const string&);
 
 };
 
@@ -70,10 +64,6 @@ void Graph<T>::add(T newNode){
             size++;
             graph.append(newLinkedLinkedList);                      // add this LinkedLinkedList to graph
         }
-    }
-
-    else{
-        //cout << newNode.getVertexNode_A();
     }
 }
 template<class T>
@@ -123,13 +113,10 @@ LinkedList<T> Graph<T>::getAllNodes(const string& aVertex){
             if(currentLinkedList->getData()->getIterator().getVertexNode_A() == aVertex){
                 graphVertex.append(currentLinkedList->getData()->getIterator());
             }
-
             currentLinkedList->getData()->iterateForward();
         }
-
         currentLinkedList = currentLinkedList->getNextNode();
     }
-
     return graphVertex;
 }
 
@@ -191,7 +178,7 @@ void Graph<T>::printMatrix(){
 }
 
 template<class T>
-void Graph<T>::outputGraph_ToFile(string outputFile){
+void Graph<T>::outputGraph_ToFile(const string& outputFile){
     fstream fout;
     fout.open(outputFile.c_str(), std::ios::app);
     if (!fout.is_open()) {
@@ -217,7 +204,7 @@ void Graph<T>::outputGraph_ToFile(string outputFile){
 }
 
 template<class T>
-void Graph<T>::outputMatrix_ToFile(string outputFile){
+void Graph<T>::outputMatrix_ToFile(const string& outputFile){
     fstream fout;
     fout.open(outputFile.c_str(), std::ios::app);
     if (!fout.is_open()) {

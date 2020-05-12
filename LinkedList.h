@@ -11,8 +11,8 @@
 #include <iostream>
 
 using std::cout;
-using std::fstream;
 using std::endl;
+using std::fstream;
 
 template<class T>
 class LinkedList{
@@ -79,7 +79,6 @@ LinkedList<T>::LinkedList(T x) {
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T>& originalLinkedList){
-
 
     if(originalLinkedList.head == nullptr){       // if original Linked List is empty
         head = tail = nullptr;                    // head is = to nullptr
@@ -156,7 +155,6 @@ void LinkedList<T>::append(T x){
         tail = newNode;                         // declare new node as the tail
     }
     size++;                                     // increment Linked List Size
-
 }
 
 template<class T>
@@ -260,14 +258,10 @@ void LinkedList<T>::printMatrix(int x){
                 if(counter > x){
                     counter = vertexNode_A + 1;
                 }
-                //cout << to_string(vertexNode_A) + ":" + to_string(vertexNode_B) + ":" + to_string(counter) + " ";
-                //counter++;
             }
-
 
             if(vertexNode_B != counter){
                 while(vertexNode_A != counter && counter <= x){
-                    //cout << std::setw(4) << std::left << "INF" << to_string(vertexNode_A) + ":" << to_string(vertexNode_B) + ":" + to_string(counter);
                     counter++;
                 }
             }

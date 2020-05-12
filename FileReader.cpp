@@ -4,13 +4,9 @@
 
 #include "FileReader.h"
 
-#include <utility>
-
 // Default constructor
-FileReader::FileReader(): networkFile(""), totDocsFound(0) {
-    fileIsValidFlag = true;
+FileReader::FileReader(): networkFile("") {
     auto inputFiles_folder = "InputFiles/";
-    //filesystem::path file_name("../InputFiles/networks.txt");// file_name = inputFiles_folder;
     filesystem::path file_name = inputFiles_folder;
 
     if (file_name == "") {
@@ -52,7 +48,6 @@ void FileReader::setCommands(string file_name) {
         }
         tempFilename = filename;
     }
-
     cfin.close();
 }
 
@@ -88,7 +83,6 @@ void FileReader::setFileName(string filename){
             exit(-1);
         }
     }
-
 }
 
 // addOutputFileSet creates a set of 3 output files with a custom ID number at the front
@@ -96,8 +90,6 @@ void FileReader::addOutputFileSet(int fileID) {
     string tempFilename;
 
     // FILE *fp = fopen( ("OutputFiles/" + tempFilename).c_str(), "w+"); fclose(fp);
-
-
 
     {   tempFilename = to_string(fileID) + "_Trivial.txt";
         outputFiles.push_back(tempFilename);
@@ -113,15 +105,6 @@ void FileReader::addOutputFileSet(int fileID) {
 
 }
 
-// Returns total number of provided files
-int FileReader::totalNumberOfInputFiles() {
-    return inputFiles.size();
-}
-// Returns total number of files created in /OutputFiles folder
-int FileReader::totalNumberOfOutputFiles() {
-    return outputFiles.size();
-}
-
 // Returns inputFiles vector as reference
 vector<string>& FileReader::getInputFiles(){
     return this->inputFiles;
@@ -130,14 +113,6 @@ vector<string>& FileReader::getInputFiles(){
 // Returns outputFiles vector as reference
 vector<string>& FileReader::getOutputFiles(){
     return this->outputFiles;
-}
-
-int FileReader::getTotDocsFound(){
-    if(totDocsFound > 0){
-        return totDocsFound;
-    }
-
-    return 0;
 }
 
 void FileReader::parseCurrentFile(const filesystem::path& fileName){

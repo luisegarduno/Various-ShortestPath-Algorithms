@@ -33,9 +33,6 @@ class NetworkFile : public Algorithm<T>{
         // Default constructor
         NetworkFile();
 
-        // Constructor that declares input file (w/ path)
-        explicit NetworkFile(T);
-
         // Constructor that declares input file and 3 output files (w/ path)
         explicit NetworkFile(T,T,T,T);
 
@@ -56,11 +53,6 @@ class NetworkFile : public Algorithm<T>{
 // Default Constructor
 template<class T>
 NetworkFile<T>::NetworkFile()= default;
-
-// Constructor - Uses base initializer to declare add the appropriate path for the network file
-template<class T>
-NetworkFile<T>::NetworkFile(T network) : network_file("InputFiles/" + network){
-}
 
 // Constructor - Uses base initializers to declare and add the appropriate path for input and output file/s
 template<class T>
@@ -118,8 +110,6 @@ void NetworkFile<T>::print(){
 }
 
 template<class T>
-NetworkFile<T>::~NetworkFile<T>() {
-    //cout << "Deallocating NetworkFile<T>" << endl;
-}
+NetworkFile<T>::~NetworkFile<T>() = default;
 
 #endif //ALGORITHMS_NETWORKFILE_H

@@ -24,9 +24,6 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::fstream;
-using std::ifstream;
-using std::ofstream;
-using std::ofstream;
 using std::to_string;
 using std::unordered_map;
 using map_Vertex = unordered_map<string,int>;
@@ -35,8 +32,7 @@ using map_Edges = pair<map_Vertex,map_Vertex>;
 template<class U>
 class Algorithm {
     private:
-        ifstream fin;                   // Reads in from inputFile;
-        ofstream fout;                  // Outputs to outputFile;
+        fstream fin;                   // Reads in from inputFile;
         Graph<Vertex> networks;
 
         // network_file holds the file path of the network data file

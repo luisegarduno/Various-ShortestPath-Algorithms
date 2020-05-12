@@ -27,9 +27,7 @@ int main(int argc,char * argv[]){
                 analyze->compute();
 
                 delete analyze;
-                //break;
             }
-
             delete newFiles;
         }
     }
