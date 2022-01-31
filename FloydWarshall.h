@@ -178,7 +178,7 @@ void FloydWarshall<W>::findShortestPath(Graph<Vertex>& thisGraph, int numOfNodes
         fout.close();
         fout.clear();
     }
-    //graphs.printGraph();
+    //graphs.printMatrix();
     graphs.outputMatrix_ToFile(floyd_warshall_file);
 
 }

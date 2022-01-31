@@ -164,7 +164,6 @@ void Algorithm<U>::setFileName(string networkFile){
             exit(-1);
         }
     }
-
 }
 
 
