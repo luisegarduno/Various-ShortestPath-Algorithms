@@ -1,19 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
-project(Algorithms)
-set (EXE_NAME FinalProject)
+project(Various-ShortestPath-Algorithms)
+set (EXE_NAME ShortestPath)
 
 link_libraries(-lstdc++fs)
 
-##########################################
-# Students, edit the items below.  In the quotes,
-# put the names of the input files as they should appear
-# in the argv param to main.
-# Example:
-#   set (input01 "train_data.csv")
-#   set (input02 "train_target.csv")
-# etc....
-set (input01 "InputFiles/moreno_kangaroo.txt")
-set (input02 "InputFiles/moreno_macaques.txt")
+set (input01 "")
+set (input02 "")
 set (input03 "")
 set (input04 "")
 
