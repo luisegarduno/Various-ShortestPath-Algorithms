@@ -1,13 +1,10 @@
-name: Algorithms
+name: Various-ShortestPath-Algorithms
 
 on: [push]
 
 env:
-  EXE_NAME: FinalProject
-  ### ***** Students!  Put the name of the input files and output files here.
-  ###   List them in the order that they need to appear in Argv param of main.
-  ###   Output Files will follow input files
-  ###   Note: These should be the actual names of the files.  No double quotes
+  BUILD_TYPE: Release
+  EXE_NAME: ShortestPath
   INPUT_FILES:
   OUTPUT_FILES:
 
