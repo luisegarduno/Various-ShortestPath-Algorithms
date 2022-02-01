@@ -50,7 +50,7 @@ jobs:
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
         shell: bash
-        run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
+        run: cd ..; ./build/$EXE_NAME $INPUT_FILES $OUTPUT_FILES
 
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
