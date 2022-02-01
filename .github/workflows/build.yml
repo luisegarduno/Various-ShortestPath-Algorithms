@@ -33,6 +33,9 @@ jobs:
       - name: Create build environment
         #run: cmake -E make_directory ${{runner.workspace}}/build
         run:  mkdir ${{runner.workspace}}/build
+        
+      - name: Create build environment
+        run:  cp -r ${{runner.workspace}}/InputFiles/  ${{runner.workspace}}/build/InputFiles
 
       - name: Configure the build
         # Use a bash shell so we can use the same syntax for environment variable
@@ -50,7 +53,7 @@ jobs:
       - name: Run the project
         working-directory: ${{runner.workspace}}/build
         shell: bash
-        run: cd ..; ./build/$EXE_NAME $INPUT_FILES $OUTPUT_FILES
+        run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
 
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
