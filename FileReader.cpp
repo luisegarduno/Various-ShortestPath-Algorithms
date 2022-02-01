@@ -13,11 +13,11 @@ FileReader::FileReader(): networkFile("") {
         cout << "Directory Error: Invalid path to a folder, exiting..." << endl;
         exit(EXIT_FAILURE);
     }
-
     parseCurrentFile(file_name);
 
-    string networkFiles = file_name.generic_string() + "networks.txt";
-    setCommands(networkFiles);
+    string networkFiles = file_name.generic_string();
+    networkFiles.pop_back();
+    setCommands(networkFiles + "networks.txt");
 }
 
 void FileReader::setCommands(string file_name) {
@@ -60,6 +60,7 @@ void FileReader::setFileName(string filename){
 
     // Create a backupnetworkFile (simple original filename with .txt added to the end)
     string backupnetworkFile = networkFile + ".txt";
+
 
     // Save the last 4 characters of the string to verify it is a .txt file
     string file_extension;
@@ -119,7 +120,10 @@ void FileReader::parseCurrentFile(const filesystem::path& fileName){
     filesystem::directory_iterator end;
     fstream fout;
 
-    string networksData_Files = fileName.generic_string() + "networks.txt";
+    string networksData_Files = fileName.generic_string();
+    networksData_Files.pop_back();
+    networksData_Files += "networks.txt";
+
     fout.open(networksData_Files.c_str(), std::ios::out);
     if (!fout.is_open()) {
         cout << "'" << networksData_Files << "' could not be opened. Please check input files." << endl;
@@ -131,6 +135,7 @@ void FileReader::parseCurrentFile(const filesystem::path& fileName){
         // directory iterator is first converted to a path
         filesystem::path dirToPath = *theIterator;
         tempFile = dirToPath.generic_string();
+
         if(tempFile != "InputFiles/networks.txt"){
             tempFile = "/" + parsePathName(tempFile);
             tempFile = parsePathName(tempFile);
