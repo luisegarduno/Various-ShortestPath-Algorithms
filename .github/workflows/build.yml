@@ -34,8 +34,8 @@ jobs:
         #run: cmake -E make_directory ${{runner.workspace}}/build
         run:  mkdir ${{runner.workspace}}/build
         
-      - name: Create build environment
-        run:  cp -r ${{runner.workspace}}/InputFiles/  ${{runner.workspace}}/build/InputFiles
+      - name: Copy InputFiles environment
+        run:  cp -r ${{runner.workspace}}/Various-ShortestPath-Algorithms/InputFiles/  ${{runner.workspace}}/build/InputFiles
 
       - name: Configure the build
         # Use a bash shell so we can use the same syntax for environment variable
