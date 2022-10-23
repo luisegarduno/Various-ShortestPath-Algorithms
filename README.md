@@ -13,7 +13,8 @@ Video installation/deployment demo: https://youtu.be/4PDCZJnXUEk
 
 __Method 1 (FASTEST)__ - Linux Only:
 
-1. Run: ` $ ./ShortestPath`
+1. Download latest [linux release](https://github.com/luisegarduno/Various-ShortestPath-Algorithms/releases/download/v1.0/LinuxRelease.zip)
+2. Run: ` $ ./ShortestPath`
 
 __Method 2 (QUICK)__ - local build:
 
