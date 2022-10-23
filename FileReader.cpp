@@ -21,7 +21,7 @@ FileReader::FileReader(): networkFile("") {
 }
 
 void FileReader::setCommands(string file_name) {
-    setFileName(std::move(file_name));
+    //setFileName(std::move(file_name));
 
     // Creates a directory called "/OutputFiles" if it does not
     // already exist.
@@ -36,7 +36,11 @@ void FileReader::setCommands(string file_name) {
 
     // fileID of type integer helps keep count just in case there are more than 3 inputted network data files
     int fileID = 1;
-    while (!cfin.eof()) {
+    for(int i = 0; i < inputFiles.size(); i++){
+        addOutputFileSet(fileID);
+        fileID++;
+    }
+    /*while (!cfin.eof()) {
 
         // Creates a set of 3 .txt files for each file
         cfin >> filename;
@@ -48,7 +52,7 @@ void FileReader::setCommands(string file_name) {
         }
         tempFilename = filename;
     }
-    cfin.close();
+    cfin.close();*/
 }
 
 // setFileName sets the given file name in the command line to the main file as well as checking if it is the
@@ -118,17 +122,17 @@ vector<string>& FileReader::getOutputFiles(){
 
 void FileReader::parseCurrentFile(const filesystem::path& fileName){
     filesystem::directory_iterator end;
-    fstream fout;
+    //fstream fout;
 
     string networksData_Files = fileName.generic_string();
     networksData_Files.pop_back();
-    networksData_Files += "networks.txt";
+    /*networksData_Files += "networks.txt";
 
     fout.open(networksData_Files.c_str(), std::ios::out);
     if (!fout.is_open()) {
         cout << "'" << networksData_Files << "' could not be opened. Please check input files." << endl;
         exit(-1);
-    }
+    }*/
     string tempFile;
 
     for(filesystem::directory_iterator theIterator(fileName) ; theIterator!= end; ++theIterator){
@@ -140,10 +144,11 @@ void FileReader::parseCurrentFile(const filesystem::path& fileName){
             tempFile = "/" + parsePathName(tempFile);
             tempFile = parsePathName(tempFile);
             tempFile.erase(0,1);
-            fout << tempFile << endl;
+            //fout << tempFile << endl;
         }
+        inputFiles.push_back(tempFile);
     }
-    fout.close();
+    //fout.close();
 }
 
 string FileReader::parsePathName(string section){

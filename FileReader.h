@@ -34,7 +34,7 @@ class FileReader {
         // Default constructor
         FileReader();
 
-        static void parseCurrentFile(const filesystem::path&);
+        void parseCurrentFile(const filesystem::path&);
 
         static string parsePathName(string);
 
