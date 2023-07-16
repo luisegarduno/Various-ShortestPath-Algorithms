@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(Various-ShortestPath-Algorithms)
+project(ShortestPath)
 set (EXE_NAME ShortestPath)
 
 link_libraries(-lstdc++fs)
@@ -18,5 +18,5 @@ foreach(file IN LISTS input01 input02 input03 input04)
 endforeach()
 
 set(CMAKE_CXX_STANDARD 17)
-add_executable(${EXE_NAME} main.cpp FileReader.cpp FileReader.h Graph.h Vertex.cpp Vertex.h MissingFilesException.h Node.h LinkedList.h Edge.cpp Edge.h Algorithm.h NetworkFile.h Algorithm.h BellmanFord.h FloydWarshall.h)
+add_executable(${EXE_NAME} main.cpp MissingFilesException.h)
 
