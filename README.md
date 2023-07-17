@@ -18,7 +18,10 @@ __Method 1 (FASTEST)__ - Linux Only:
 
 __Method 2 (QUICK)__ - local build:
 
-1. Build project + Create executable: `mkdir build; cd build; cmake ..; make -j 2 optimize=no debug=yes > /dev/null; mv ShortestPath ../`
+1. Build project + Create executable:
+```bash
+mkdir build; cd build; cmake ..; make -j 2 optimize=no debug=yes > /dev/null; mv ShortestPath ../
+```
 2. Done! To deploy: `./ShortestPath`
 
 __Method 3 (noob)__ - local build:
