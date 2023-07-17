@@ -4,8 +4,7 @@
 
 #include "Menu.h"
 
-
-
+// Default constructor
 Menu::Menu(){
     int algorithm_choice = 0, dataset_choice = 0;
     newFiles = new FileReader();
@@ -26,6 +25,7 @@ Menu::Menu(){
     }
 }
 
+// Displays the user's input
 void Menu::confirm_input(int algorithm_choice, int dataset_choice){
     cout << "============================" << endl;
     cout << "You have selected:" << endl;
@@ -82,4 +82,5 @@ void Menu::clrscr(){
     cout << "\033[2J\033[1;1H";
 }
 
+// Default destructor
 Menu::~Menu() = default;
