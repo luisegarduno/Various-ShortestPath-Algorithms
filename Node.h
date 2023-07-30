@@ -31,64 +31,119 @@ class Node{
         T data;
 };
 
-// Default constructor
+/**
+ * Default constructor
+ *
+ * @tparam T class type
+ */
 template<class T>
 Node<T>::Node() : next(nullptr), previous(nullptr){
 }
 
-// Constructor - with data value passed in as paramater
+/**
+ * Constructor - with data value passed in as parameter
+ *
+ * @tparam T class type
+ * @param dataValue data value to be stored in node
+ */
 template<class T>
 Node<T>::Node(T dataValue) : next(nullptr), previous(nullptr), data(dataValue){
 }
 
-// Constructor - with Node passed in as paramater - only fetch data value
+/**
+ * Constructor - with Node passed in as parameter - only fetch data value
+ *
+ * @tparam T class type
+ * @param node with node data value to be stored in node
+ */
 template<class T>
 Node<T>::Node(const Node<T>& node) : data(node.data), next(nullptr), previous(nullptr){
 }
 
-// Constructor - with Node data, next node ptr, &  previous node ptr passed in
+/**
+ * Constructor - with Node passed in as parameter - fetch data value, next node ptr, & previous node ptr
+ *
+ * @tparam T class type
+ * @param node node with data value to be stored in node
+ * @param nextNode next node ptr
+ * @param previousNode previous node ptr
+ */
 template<class T>
 Node<T>::Node(const Node<T>& node, Node<T>* nextNode, Node<T>* previousNode)
   : data(node.data), next(nextNode), previous(previousNode){
 }
 
-// Setter for Data
+/**
+ * Setter for data
+ *
+ * @tparam T class type
+ * @param data data value to be stored in node
+ */
 template<class T>
 void Node<T>::setData(T* data){
   this->data = data;
 }
 
-// Setter for next node
+/**
+ * Setter for next node
+ *
+ * @tparam T class type
+ * @param setNext next node ptr
+ */
 template<class T>
 void Node<T>::setNextNode(Node<T>* setNext){
   this->next = setNext;
 }
 
-// Setter for previous node
+/**
+ * Setter for previous node
+ *
+ * @tparam T class type
+ * @param setPrevious previous node ptr
+ */
 template<class T>
 void Node<T>::setPreviousNode(Node<T>* setPrevious){
   this->previous = setPrevious;
 }
 
-// Getter for node data 
+/**
+ * Getter for node data
+ *
+ * @tparam T class type
+ * @return node data
+ */
 template<class T>
 T* Node<T>::getData(){
   return &data;
 }
 
-// Getter for next node
+/**
+ * Getter for next node
+ *
+ * @tparam T class type
+ * @return next node ptr
+ */
 template<class T>
-Node<T>* Node::getNextNode(){
+Node<T>* Node<T>::getNextNode(){
   return this->next;
 }
 
-// Getter for previous node
+/**
+ * Getter for previous node
+ *
+ * @tparam T class type
+ * @return previous node ptr
+ */
 template<class T>
 Node<T>* Node<T>::getPreviousNode(){
   return this->previous;
 }
 
-// Destructor
+/**
+ * Destructor
+ *
+ * @tparam T class type
+ */
 template<class T>
 Node<T>::~Node<T>() = default;
 

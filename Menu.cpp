@@ -4,7 +4,10 @@
 
 #include "Menu.h"
 
-// Default constructor
+/**
+ * @brief Menu default constructor
+ *
+ */
 Menu::Menu(){
     int algorithm_choice = 0, dataset_choice = 0;
     newFiles = new FileReader();
@@ -25,7 +28,12 @@ Menu::Menu(){
     }
 }
 
-// Displays the user's input
+/**
+ * @brief Displays the user's input
+ *
+ * @param algorithm_choice the algorithm choice selected (1-5)
+ * @param dataset_choice the dataset choice selected
+ */
 void Menu::confirm_input(int algorithm_choice, int dataset_choice){
     cout << "============================" << endl;
     cout << "You have selected:" << endl;
@@ -52,7 +60,9 @@ void Menu::confirm_input(int algorithm_choice, int dataset_choice){
     cout << "============================" << endl;
 }
 
-// Displays the algorithms options
+/**
+ * @brief Displays the algorithms options
+ */
 void Menu::algorithms_options(){
     cout << "============================" << endl;
     cout << "Select an algorithm to run:" << endl;
@@ -65,7 +75,9 @@ void Menu::algorithms_options(){
     cout << "============================" << endl;
 }
 
-// Displays the dataset options
+/**
+ * @brief Displays the dataset options
+ */
 void Menu::dataset_options() {
     cout << "=================================" << endl;
     cout << "Select a dataset to use:" << endl;
@@ -77,10 +89,14 @@ void Menu::dataset_options() {
 
 }
 
-// Clears the terminal screen
+/**
+ * @brief Clears the terminal screen
+ */
 void Menu::clrscr(){
     cout << "\033[2J\033[1;1H";
 }
 
-// Default destructor
+/**
+ * @brief Default destructor
+ */
 Menu::~Menu() = default;

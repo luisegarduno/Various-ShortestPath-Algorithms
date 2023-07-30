@@ -4,7 +4,6 @@
 
 #include "FileReader.h"
 
-
 /* 1. Allow user to drop dataset/s into a folder called InputFiles (or can be called anything)
  * 2. Scan folder & retrieve all file names.
  * 3. Ask the user what algorithm they want to run.
@@ -18,7 +17,10 @@
  *
  */
 
-// Default Constructor
+/**
+ * @brief FileReader default constructor
+ *
+ */
 FileReader::FileReader() {
     const char * folder_name = "../InputFiles/";
     fs::path folder = folder_name;
@@ -26,7 +28,12 @@ FileReader::FileReader() {
     fetchFileNames(folder);
 }
 
-// Iterates through folder and stores the full file path and file (datasets) names in vectors
+/**
+ * @brief Reads files in the InputFiles folder and stores the
+ * full file path location and file names in vectors
+ *
+ * @param folder_name the folder name where the datasets are stored
+ */
 void FileReader::fetchFileNames(const fs::path& folder_name){
     for (const auto& entry : fs::directory_iterator(folder_name)){
         inputFilePaths.push_back(entry.path());
@@ -34,8 +41,12 @@ void FileReader::fetchFileNames(const fs::path& folder_name){
     }
 }
 
-
-// Parses the file path and returns the file name
+/**
+ * @brief Removes the file path and returns the file name
+ *
+ * @param file_path the file path to be parsed
+ * @return string the file name
+ */
 string FileReader::parseFilePath(string file_path) {
     string file_name = "";
 
@@ -50,17 +61,27 @@ string FileReader::parseFilePath(string file_path) {
     return file_name;
 }
 
-// Returns the dataset names
+/**
+ * @brief Returns the dataset names
+ *
+ * @return vector<string> the dataset names
+ */
 vector<string> FileReader::getDatasetNames() {
     return inputFileNames;
 }
 
-// Returns the dataset file paths
+/**
+ * @brief Returns the dataset file paths
+ *
+ * @return vector<string> the dataset file paths
+ */
 vector<string> FileReader::getDatasetPaths() {
     return inputFilePaths;
 }
 
-// Destructor
+/**
+ * @brief FileReader destructor
+ *
+ */
 FileReader::~FileReader() {
-
 }

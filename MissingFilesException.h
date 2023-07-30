@@ -1,12 +1,14 @@
 //
-// Created by luise on 5/3/2020.
+// Created by Luis G. on 07/29/2023.
 //
 
-#ifndef ALGORITHMS_MISSINGFILESEXCEPTION_H
-#define ALGORITHMS_MISSINGFILESEXCEPTION_H
+#ifndef SHORTESTPATH_MISSINGFILESEXCEPTION_H
+#define SHORTESTPATH_MISSINGFILESEXCEPTION_H
 
-// Custom exception used only at the start of the program when checking
-// whether or not the valid number of files are entered into the command line
+/**
+ * Custom exception used only at the start of the program when checking
+ * whether or not the valid number of files are entered into the command line
+ */
 class MissingFilesException{
     public:
         static const char * what() {
@@ -14,4 +16,4 @@ class MissingFilesException{
         }
 };
 
-#endif //ALGORITHMS_MISSINGFILESEXCEPTION_H
+#endif //SHORTESTPATH_MISSINGFILESEXCEPTION_H
