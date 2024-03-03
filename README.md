@@ -1,3 +1,5 @@
+![Number of GitHub Downloads badge](https://img.shields.io/github/downloads/luisegarduno/Various-ShortestPath-Algorithms/total?color=pink&label=GitHub%20Downloads)
+
 Find the shortest path within a graph by experimenting with different shortest path algorithms.
 
 Algorithms include:
