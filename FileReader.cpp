@@ -22,7 +22,7 @@
  *
  */
 FileReader::FileReader() {
-    const char * folder_name = "../InputFiles/";
+    const char * folder_name = "./InputFiles/";
     fs::path folder = folder_name;
 
     fetchFileNames(folder);
