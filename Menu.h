@@ -17,6 +17,9 @@ class Menu{
         // Default constructor
         Menu();
 
+        // Constructor w/ preset choices - mostly for testing
+        Menu(bool display_menu);
+
         // Displays the user's input
         void confirm_input(int algorithm_choice, int dataset_choice);
 

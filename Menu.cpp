@@ -33,6 +33,30 @@ Menu::Menu(){
 }
 
 /**
+ * @brief Menu constructor with choices preset as parameters
+ * mostly used for testing
+ *
+ * @param algorithm_choice int representing the algorithm to use
+ * @param dataset_choice int representing the dataset to use
+ *
+ */
+Menu::Menu(bool display_menu){
+    newFiles = new FileReader();
+
+    if(display_menu){
+        algorithms_options();
+        clrscr();
+        dataset_options();
+        clrscr();
+    }
+
+
+    // Set default choices:
+    // Algorithm Choice = 1 | Dataset Choice = 1
+    confirm_input(1, 1);
+}
+
+/**
  * @brief Displays the user's input
  *
  * @param algorithm_choice the algorithm choice selected (1-5)
