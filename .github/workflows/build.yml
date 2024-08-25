@@ -33,6 +33,11 @@ jobs:
       - name: Checkout project repo from GitHub
         uses: actions/checkout@v1
 
+      - name: Download required linux packages
+        run: |
+          sudo apt update
+          sudo apt install expect valgrind g++-multilib qemu-user
+
       - name: Executable name Environment Variable Check
         run: |
           echo ${{env.EXE_NAME}}
@@ -46,7 +51,7 @@ jobs:
 
       - name: Create build environment
         run:  mkdir ${{runner.workspace}}/build
-        
+
       - name: Copy InputFiles environment
         run:  cp -r ${{runner.workspace}}/Various-ShortestPath-Algorithms/InputFiles/  ${{runner.workspace}}/build/InputFiles
 
@@ -61,7 +66,7 @@ jobs:
       - name: Test build
         working-directory: ${{runner.workspace}}/build
         run: make -j2 optimize=no debug=yes > /dev/null
-        
+
       - name: Run the project - Testing
         working-directory: ${{runner.workspace}}/build
         run: ./$EXE_NAME $INPUT_FILES $OUTPUT_FILES
@@ -79,7 +84,7 @@ jobs:
             echo "  Copying $f"
             cp $f artifacts/
           done
-          
+
       - name: Upload output files to GitHub so they can be reviewed
         uses: actions/upload-artifact@v1
         with:
