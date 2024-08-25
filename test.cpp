@@ -11,6 +11,8 @@
 #include "Node.h"
 #include "LinkedList.h"
 
+using std::string;
+
 TEST_CASE("Node", "Node<T>"){
 
     SECTION("Default Constructor"){
@@ -116,18 +118,35 @@ TEST_CASE("Node", "Node<T>"){
 
 TEST_CASE("LinkedList", "LinkedList<T>"){
 
-    SECTION("Default Constructor"){
-        LinkedList<Node<std::string>> * myList = new LinkedList<Node<std::string>>();
+    SECTION("Default Constructor") {
+        SECTION("Common Scenario") {
+            LinkedList<string> * myList = new LinkedList<string>();
 
-        REQUIRE(myList->getLinkedList_head() == nullptr);
-        REQUIRE(myList->getLinkedList_tail() == nullptr);
-        REQUIRE(myList->getLinkedList_iterator() == nullptr);
-        REQUIRE(myList->getListSize() == 0);
+            REQUIRE(myList->getLinkedList_head() == nullptr);
+            REQUIRE(myList->getLinkedList_tail() == nullptr);
+            REQUIRE(myList->getLinkedList_iterator() == nullptr);
+            REQUIRE(myList->getListSize() == 0);
 
-        Node<Node<std::string>> * null_node = nullptr;
-        REQUIRE(myList->getLinkedList_head()->getData() == null_node->getData());
+            Node<string> * null_node = nullptr;
 
-        delete myList;
-        delete null_node;
+            REQUIRE(myList->getLinkedList_head()->getData() == null_node->getData());
+
+            delete myList;
+            delete null_node;
+
+        }SECTION("Other") {
+            LinkedList<Node<string>> * myList = new LinkedList<Node<string>>();
+
+            REQUIRE(myList->getLinkedList_head() == nullptr);
+            REQUIRE(myList->getLinkedList_tail() == nullptr);
+            REQUIRE(myList->getLinkedList_iterator() == nullptr);
+            REQUIRE(myList->getListSize() == 0);
+
+            Node<Node<string>> * null_node = nullptr;
+            REQUIRE(myList->getLinkedList_head()->getData() == null_node->getData());
+
+            delete myList;
+            delete null_node;
+        }
     }
 }

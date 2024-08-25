@@ -89,7 +89,6 @@ void LinkedList<T>::setLinkedList_head(Node<T>* newHead){
     if(head == nullptr){
         head = newHead;
     }
-
 }
 
 /**
@@ -156,7 +155,6 @@ Node<T> * LinkedList<T>::getLinkedList_iterator(){
  */
 template<class T>
 LinkedList<T>::~LinkedList<T>() = default;
-
 
 
 #endif //SHORTESTPATH_LINKEDLIST_H
