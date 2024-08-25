@@ -78,6 +78,39 @@ TEST_CASE("Node", "Node<T>"){
         delete nodeA;
         delete nodeB;
     }
+
+    SECTION("Linked Nodes"){
+        Node<int> * nodeA = new Node<int>(12);
+
+        Node<int> * nodeB = new Node<int>(18);
+
+        Node<int> * nodeC = new Node<int>(15);
+
+        // nullptr<-nodeA[12]<->nodeB[18]->nullptr
+        nodeB->setPreviousNode(nodeA);
+        nodeA->setNextNode(nodeB);
+        REQUIRE(*(nodeA->getNextNode()->getData()) == 18);
+        REQUIRE(*(nodeB->getPreviousNode()->getData()) == 12);
+
+        // nullptr<-nodeA[12]<->nodeB[18]<->nodeC[15]->nullptr
+        nodeC->setPreviousNode(nodeB);
+        nodeB->setNextNode(nodeC);
+        REQUIRE(*(nodeB->getNextNode()->getData()) == 15);
+        REQUIRE(*(nodeC->getPreviousNode()->getData()) == 18);
+
+        // nullptr<-nodeA[12]<->nodeB[18]<->nodeC[15]<->nodeD[10]->nullptr
+        Node<int> * nodeD = new Node<int>(10,nullptr, nodeC);
+        nodeC->setNextNode(nodeD);
+
+        REQUIRE(*(nodeD->getData()) == 10);
+        REQUIRE(*(nodeD->getPreviousNode()->getData()) == 15);
+        REQUIRE(*(nodeC->getNextNode()->getData()) == 10);
+
+        delete nodeA;
+        delete nodeB;
+        delete nodeC;
+        delete nodeD;
+    }
 }
 
 TEST_CASE("LinkedList", "LinkedList<T>"){
