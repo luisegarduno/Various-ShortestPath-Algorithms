@@ -8,6 +8,7 @@
 #include <cstring>
 #include "catch.hpp"
 #include "Node.h"
+#include "LinkedList.h"
 
 TEST_CASE("Node", "Node<T>"){
 
@@ -76,5 +77,16 @@ TEST_CASE("Node", "Node<T>"){
 
         delete nodeA;
         delete nodeB;
+    }
+}
+
+TEST_CASE("LinkedList", "LinkedList<T>"){
+
+    SECTION("Default Constructor"){
+        LinkedList<Node<int>> * myList = new LinkedList<Node<int>>();
+
+        //REQUIRE(myList->head() == nullptr);
+
+        delete myList;
     }
 }

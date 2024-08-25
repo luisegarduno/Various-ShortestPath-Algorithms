@@ -30,6 +30,8 @@ class LinkedList {
     public:
         LinkedList();
 
+        ~LinkedList();
+
 };
 
 /**
@@ -40,6 +42,9 @@ class LinkedList {
 template<class T>
 LinkedList<T>::LinkedList(): head(nullptr), tail(nullptr), iterator(nullptr), size(0){
 }
+
+template<class T>
+LinkedList<T>::~LinkedList<T>() = default;
 
 
 
