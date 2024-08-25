@@ -15,12 +15,16 @@ Menu::Menu(){
     while(true){
         algorithms_options();
         cin >> algorithm_choice;
-        if(algorithm_choice == 6) break;
+        if(algorithm_choice == 6) {
+            break;
+        }
         clrscr();
 
         dataset_options();
         cin >> dataset_choice;
-        if(newFiles->getDatasetNames().size() == dataset_choice + 1) break;
+        if(newFiles->getDatasetNames().size() == dataset_choice + 1) {
+            break;
+        }
         clrscr();
 
         confirm_input(algorithm_choice, dataset_choice);

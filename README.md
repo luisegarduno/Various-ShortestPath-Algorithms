@@ -20,7 +20,7 @@ __Method 2 (QUICK)__ - local build:
 
 1. Build project + Create executable:
 ```bash
-mkdir build; cd build; cmake ..; make -j 2 optimize=no debug=yes > /dev/null; mv ShortestPath ../
+mkdir build; cd build; cmake ..; make -j 2 optimize=no debug=yes > /dev/null; mv ShortestPath ../; cd ..
 ```
 2. Done! To deploy: `./ShortestPath`
 
@@ -32,4 +32,5 @@ This method is the same as method 1, but in baby steps.
 2. Build the project: `cmake ..`
 3. Create executable: `make -j 2 optimize=no debug=yes > /dev/null`
 4. Move file to project directory: `$ mv ShortestPath ../`
-5. Done! To deploy: `./ShortestPath` 
+5. Go back to project directory: `$ cd ..`
+6. Done! To deploy: `./ShortestPath` 
