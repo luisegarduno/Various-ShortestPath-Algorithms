@@ -6,6 +6,7 @@
  */
 
 #include <cstring>
+#include <string>
 #include "catch.hpp"
 #include "Node.h"
 #include "LinkedList.h"
@@ -99,7 +100,7 @@ TEST_CASE("Node", "Node<T>"){
         REQUIRE(*(nodeC->getPreviousNode()->getData()) == 18);
 
         // nullptr<-nodeA[12]<->nodeB[18]<->nodeC[15]<->nodeD[10]->nullptr
-        Node<int> * nodeD = new Node<int>(10,nullptr, nodeC);
+        Node<int> * nodeD = new Node<int>(Node<int>(10),nullptr, nodeC);
         nodeC->setNextNode(nodeD);
 
         REQUIRE(*(nodeD->getData()) == 10);
@@ -116,10 +117,17 @@ TEST_CASE("Node", "Node<T>"){
 TEST_CASE("LinkedList", "LinkedList<T>"){
 
     SECTION("Default Constructor"){
-        LinkedList<Node<int>> * myList = new LinkedList<Node<int>>();
+        LinkedList<Node<std::string>> * myList = new LinkedList<Node<std::string>>();
 
-        //REQUIRE(myList->head() == nullptr);
+        REQUIRE(myList->getLinkedList_head() == nullptr);
+        REQUIRE(myList->getLinkedList_tail() == nullptr);
+        REQUIRE(myList->getLinkedList_iterator() == nullptr);
+        REQUIRE(myList->getListSize() == 0);
+
+        Node<Node<std::string>> * null_node = nullptr;
+        REQUIRE(myList->getLinkedList_head()->getData() == null_node->getData());
 
         delete myList;
+        delete null_node;
     }
 }

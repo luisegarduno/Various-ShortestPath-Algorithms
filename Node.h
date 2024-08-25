@@ -11,7 +11,7 @@ template<class T>
 class Node{
     public:
         Node();
-        Node(T);
+        explicit Node(T);
         Node(const Node<T>&);
         Node(const Node<T>&, Node<T>*, Node<T>*);
 
@@ -61,7 +61,7 @@ Node<T>::Node(const Node<T>& node) : data(node.data), next(nullptr), previous(nu
 }
 
 /**
- * Constructor - with Node passed in as parameter - fetch data value, next node ptr, & previous node ptr
+ * Copy Constructor - with Node passed in as parameter - fetch data value, next node ptr, & previous node ptr
  *
  * @tparam T class type
  * @param node node with data value to be stored in node
