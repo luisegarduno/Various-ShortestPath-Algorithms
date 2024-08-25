@@ -32,7 +32,9 @@ class LinkedList {
 
         void append(T);
 
+        T& getAt(int);
         int getListSize();
+        void resetIterator();
 
         void setLinkedList_head(Node<T>*);
         void setLinkedList_tail(Node<T>*);
@@ -55,15 +57,52 @@ LinkedList<T>::LinkedList(): head(nullptr), tail(nullptr), iterator(nullptr), si
 }
 
 /**
- * @brief Add node to LinkedList
+ * @brief Add item to LinkedList
  *
  * @tparam T class type
- * @param T node to append to LinkedList
+ * @param T item to append to LinkedList
  */
 template<class T>
-void LinkedList<T>::append(T node) {
-    LinkedList<T> * tail;
+void LinkedList<T>::append(T x) {
+    Node<T> * newNode = new Node<T>(x);
+
+    if(head == nullptr){
+        head = newNode;
+        tail = newNode;
+    }
+    else {
+        tail->setNextNode(newNode);
+        newNode->setPreviousNode(tail);
+        tail = newNode;
+    }
+    size++;
 }
+
+/**
+ * @brief Return data at given index
+ *
+ * @tparam T class type
+ *
+ */
+template<class T>
+T& LinkedList<T>::getAt(int index){
+     if(head == nullptr){
+         return *(head->getData());
+     }
+     else if(index == 0){
+         return *(head->getData());
+     }
+     else if(index == size-1){
+         return *(tail->getData());
+     }
+     else{
+         Node<T>* counter = head;
+         for(int i = 0; i < index; i++){
+             counter = counter->getNextNode();
+         }
+         return *(counter->getData());
+     }
+ }
 
 /**
  * @brief Total number of nodes in LinkedList
@@ -76,6 +115,15 @@ int LinkedList<T>::getListSize() {
     return size;
 }
 
+/**
+ * @brief Reset iterator to point to head
+ *
+ * @tparam T class type
+ */
+template<class T>
+void LinkedList<T>::resetIterator() {
+    iterator = head;
+}
 
 /**
  * @brief Assign the head node to LinkedList
@@ -154,7 +202,14 @@ Node<T> * LinkedList<T>::getLinkedList_iterator(){
  * @tparam T class type
  */
 template<class T>
-LinkedList<T>::~LinkedList<T>() = default;
+LinkedList<T>::~LinkedList<T>(){
+    Node<T>* current = head;
+    while(current != nullptr){
+        Node<T>* next = current->getNextNode();
+        delete current;
+        current = next;
+    }
+};
 
 
 #endif //SHORTESTPATH_LINKEDLIST_H

@@ -149,4 +149,25 @@ TEST_CASE("LinkedList", "LinkedList<T>"){
             delete null_node;
         }
     }
+
+    SECTION("Append to LinkedList"){
+        LinkedList<string>* myList = new LinkedList<string>();
+
+        myList->append("string");
+        REQUIRE(*(myList->getLinkedList_head()->getData()) == "string");
+
+        myList->append("string2");
+        REQUIRE(*(myList->getLinkedList_head()->getData()) == "string");
+        REQUIRE(*(myList->getLinkedList_tail()->getData()) == "string2");
+
+        myList->append("string3");
+        REQUIRE(*(myList->getLinkedList_head()->getData()) == "string");
+        REQUIRE(*(myList->getLinkedList_tail()->getData()) == "string3");
+
+        REQUIRE(myList->getAt(0) == "string");
+        REQUIRE(myList->getAt(1) == "string2");
+        REQUIRE(myList->getAt(2) == "string3");
+
+        delete myList;
+    }
 }
