@@ -103,4 +103,6 @@ void Menu::clrscr(){
 /**
  * @brief Default destructor
  */
-Menu::~Menu() = default;
+Menu::~Menu(){
+    delete newFiles;
+}
