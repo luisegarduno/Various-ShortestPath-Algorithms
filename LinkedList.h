@@ -18,31 +18,41 @@ using std::fstream;
 template<class T>
 class LinkedList {
 
-    Node<T> * head;
-    Node<T> * tail;
-    Node<T> * iterator;
-
-    int size;
-
     private:
+        Node<T> * head;
+        Node<T> * tail;
+        Node<T> * iterator;
+
+        // '{}' sets default value to 0
+        int size{};
+
         void remove(Node<T>*);
 
     public:
+        // ---- Constructors ----
         LinkedList();
 
         void append(T);
+        void clear();
 
         T& getAt(int);
         int getListSize();
         void resetIterator();
 
-        void setLinkedList_head(Node<T>*);
-        void setLinkedList_tail(Node<T>*);
-        void setLinkedList_iterator(Node<T>*);
 
+        // ---- Setters & Getters ----
+
+        void setLinkedList_head(Node<T>*);
         Node<T> * getLinkedList_head();
+
+        void setLinkedList_tail(Node<T>*);
         Node<T> * getLinkedList_tail();
+
+        void setLinkedList_iterator(Node<T>*);
         Node<T> * getLinkedList_iterator();
+
+
+        // ---- Destructor ----
 
         ~LinkedList();
 };
@@ -53,7 +63,7 @@ class LinkedList {
  * @tparam T class type
  */
 template<class T>
-LinkedList<T>::LinkedList(): head(nullptr), tail(nullptr), iterator(nullptr), size(0){
+LinkedList<T>::LinkedList(): head(nullptr), tail(nullptr), iterator(nullptr){
 }
 
 /**
@@ -79,25 +89,45 @@ void LinkedList<T>::append(T x) {
 }
 
 /**
+ * @brief Clears the LinkedList
+ *
+ * @tparam T class type
+ */
+template<class T>
+void LinkedList<T>::clear(){
+    Node<T>* current = head;
+    while(current != nullptr){
+        Node<T>* next = current->getNextNode();
+        delete current;
+        current = next;
+    }
+}
+
+/**
  * @brief Return data at given index
  *
  * @tparam T class type
+ * @param x index of node (int)
  *
  */
 template<class T>
-T& LinkedList<T>::getAt(int index){
+T& LinkedList<T>::getAt(int x){
+    // Case 1: If head is empty
+    // Case 2: Return head if parameter x is 0
+    // Case 3: Return tail if parameter x is size-1
+    // Case 4: Return data at index x if x is between 0 and size-1
      if(head == nullptr){
          return *(head->getData());
      }
-     else if(index == 0){
+     else if(x == 0){
          return *(head->getData());
      }
-     else if(index == size-1){
+     else if(x == size-1){
          return *(tail->getData());
      }
      else{
          Node<T>* counter = head;
-         for(int i = 0; i < index; i++){
+         for(int i = 0; i < x; i++){
              counter = counter->getNextNode();
          }
          return *(counter->getData());
@@ -136,31 +166,18 @@ void LinkedList<T>::setLinkedList_head(Node<T>* newHead){
     // If head is empty -> set head node
     if(head == nullptr){
         head = newHead;
-    }
-}
+        tail = newHead;
+        iterator = newHead;
 
-/**
- * @brief Assign the tail node to LinkedList
- *
- * @tparam T class type
- * @param node Node<T>*, pointer to node that'll be assigned as tail node
- */
-template<class T>
-void LinkedList<T>::setLinkedList_tail(Node<T>* newTail){
-    if(tail == nullptr){
-        tail = newTail;
+        size++;
     }
-}
+    else{
+        // If head is not empty -> set head node and set next node to previous head node
+        newHead->setNextNode(head);
+        head = newHead;
 
-/**
- * @brief Assign the iterator node to LinkedList
- *
- * @tparam T class type
- * @param node Node<T>*, pointer to node that'll be assigned as iterator node
- */
-template<class T>
-void LinkedList<T>::setLinkedList_iterator(Node<T>* newIterator){
-    iterator = newIterator;
+        size++;
+    }
 }
 
 /**
@@ -175,6 +192,28 @@ Node<T> * LinkedList<T>::getLinkedList_head(){
 }
 
 /**
+ * @brief Assign the tail node to LinkedList
+ *
+ * @tparam T class type
+ * @param node Node<T>*, pointer to node that'll be assigned as tail node
+ */
+template<class T>
+void LinkedList<T>::setLinkedList_tail(Node<T>* newTail){
+    if(tail == nullptr){
+        head = newTail;
+        tail = newTail;
+        iterator = newTail;
+
+        size++;
+    }
+    else{
+        tail->setNextNode(newTail);
+        newTail->setPreviousNode(tail);
+        tail = newTail;
+    }
+}
+
+/**
  * @brief Return the Tail Node in LinkedList
  *
  * @tparam T class type
@@ -183,6 +222,27 @@ Node<T> * LinkedList<T>::getLinkedList_head(){
 template<class T>
 Node<T> * LinkedList<T>::getLinkedList_tail(){
     return this->tail;
+}
+
+/**
+ * @brief Assign the iterator node to LinkedList
+ *
+ * @tparam T class type
+ * @param node Node<T>*, pointer to node that'll be assigned as iterator node
+ */
+template<class T>
+void LinkedList<T>::setLinkedList_iterator(Node<T>* newIterator){
+    if(iterator == nullptr){
+        head = newIterator;
+        tail = newIterator;
+        iterator = newIterator;
+
+        size++;
+    }
+    else{
+        iterator->setNextNode(newIterator);
+        newIterator->setPreviousNode(iterator);
+    }
 }
 
 /**
@@ -203,12 +263,7 @@ Node<T> * LinkedList<T>::getLinkedList_iterator(){
  */
 template<class T>
 LinkedList<T>::~LinkedList<T>(){
-    Node<T>* current = head;
-    while(current != nullptr){
-        Node<T>* next = current->getNextNode();
-        delete current;
-        current = next;
-    }
+    clear();
 };
 
 

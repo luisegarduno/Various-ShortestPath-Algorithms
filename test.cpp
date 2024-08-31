@@ -82,7 +82,7 @@ TEST_CASE("Node", "Node<T>"){
         delete nodeB;
     }
 
-    SECTION("Linked Nodes"){
+    SECTION("'Linked' Nodes"){
         Node<int> * nodeA = new Node<int>(12);
 
         Node<int> * nodeB = new Node<int>(18);
@@ -170,4 +170,71 @@ TEST_CASE("LinkedList", "LinkedList<T>"){
 
         delete myList;
     }
+
+    SECTION("LinkedList Size"){
+        LinkedList<string>* myList = new LinkedList<string>();
+
+        REQUIRE(myList->getListSize() == 0);
+
+        myList->append("string");
+        REQUIRE(myList->getListSize() == 1);
+
+        myList->append("string2");
+        REQUIRE(myList->getListSize() == 2);
+
+        myList->append("string3");
+        REQUIRE(myList->getListSize() == 3);
+
+        delete myList;
+    }
+
+    SECTION("Reset Iterator"){
+        LinkedList<string>* myList = new LinkedList<string>();
+
+        myList->append("string");
+        myList->append("string2");
+        myList->append("string3");
+
+        myList->resetIterator();
+        REQUIRE(myList->getLinkedList_iterator() == myList->getLinkedList_head());
+
+        delete myList;
+    }
+
+    SECTION("LinkedList Setters (Head, Tail, Iterator)"){
+        SECTION("Set LinkedList Head"){
+            LinkedList<string>* myList = new LinkedList<string>();
+
+            Node<string>* nodeA = new Node<string>("string");
+            myList->setLinkedList_head(nodeA);
+
+            REQUIRE(myList->getLinkedList_head() == nodeA);
+
+            delete myList;
+        }
+
+        SECTION("Set LinkedList Tail"){
+            LinkedList<string>* myList = new LinkedList<string>();
+
+            Node<string>* nodeA = new Node<string>("string");
+            myList->setLinkedList_tail(nodeA);
+
+            REQUIRE(myList->getLinkedList_tail() == nodeA);
+
+            delete myList;
+        }
+
+        SECTION("Set LinkedList Iterator"){
+            LinkedList<string>* myList = new LinkedList<string>();
+
+            Node<string>* nodeA = new Node<string>("string");
+            myList->setLinkedList_iterator(nodeA);
+
+            REQUIRE(myList->getLinkedList_iterator() == nodeA);
+
+            delete myList;
+        }
+
+    }
+
 }
