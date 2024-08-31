@@ -26,14 +26,21 @@ class LinkedList {
         // '{}' sets default value to 0
         int size{};
 
-        void remove(Node<T>*);
+        void remove(Node<T>*); // TODO
 
     public:
+
         // ---- Constructors ----
+
         LinkedList();
+        // TODO: Add copy constructor
+        // TODO: Add copy assignment operator
+        LinkedList<T>& operator=(const LinkedList<T>&) const;
 
         void append(T);
         void clear();
+
+        void print();
 
         T& getAt(int);
         int getListSize();
@@ -100,6 +107,27 @@ void LinkedList<T>::clear(){
         Node<T>* next = current->getNextNode();
         delete current;
         current = next;
+    }
+}
+
+/**
+ * @brief Print LinkedList
+ *
+ * @tparam T class type
+ */
+template<class T>
+void LinkedList<T>::print(){
+    if(head == nullptr){
+        std::cout << "LinkedList is empty" << std::endl;
+    }
+    else {
+        Node<T> * current = head;
+
+        while (current != nullptr) {
+            cout << *(current->getData()) << " ";
+            current = current->getNextNode();
+        }
+        cout << endl;
     }
 }
 

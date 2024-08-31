@@ -114,6 +114,43 @@ TEST_CASE("Node", "Node<T>"){
         delete nodeC;
         delete nodeD;
     }
+
+    SECTION("Insert Node"){
+        Node<int> * nodeA = new Node<int>(12);
+        Node<int> * nodeB = new Node<int>(14);
+        Node<int> * nodeC = new Node<int>(15);
+
+        // nullptr<-nodeA[12]<->nodeB[14]->nullptr
+        nodeB->setPreviousNode(nodeA);
+        nodeA->setNextNode(nodeB);
+
+        // nullptr<-nodeA[12]<->nodeB[14]<->nodeC[15]->nullptr
+        nodeC->setPreviousNode(nodeB);
+        nodeB->setNextNode(nodeC);
+
+        Node<int> * newNode = new Node<int>(13);
+
+        // nullptr<-newNode[13]->nodeB[14]<->nodeC[15]->nullptr
+        newNode->setNextNode(nodeB);
+        nodeB->setPreviousNode(newNode);
+
+        // nullptr<-nodeA[12]<->newNode[13]->nodeB[14]<->nodeC[15]->nullptr
+        nodeA->setNextNode(newNode);
+        newNode->setPreviousNode(nodeA);
+
+        REQUIRE(*(newNode->getPreviousNode()->getData()) == 12);
+        REQUIRE(*(newNode->getData()) == 13);
+        REQUIRE(*(newNode->getNextNode()->getData()) == 14);
+        REQUIRE(*(newNode->getNextNode()->getNextNode()->getData()) == 15);
+        REQUIRE(*(nodeA->getNextNode()->getData()) == 13);
+        REQUIRE(*(nodeC->getPreviousNode()->getData()) == 14);
+        REQUIRE(*(nodeB->getPreviousNode()->getData()) == 13);
+
+        delete nodeA;
+        delete nodeB;
+        delete nodeC;
+        delete newNode;
+    }
 }
 
 TEST_CASE("LinkedList", "LinkedList<T>"){
@@ -234,7 +271,18 @@ TEST_CASE("LinkedList", "LinkedList<T>"){
 
             delete myList;
         }
+    }
 
+    SECTION("Print LinkedList"){
+        LinkedList<string>* myList = new LinkedList<string>();
+
+        myList->append("string");
+        myList->append("string2");
+        myList->append("string3");
+
+        myList->print();
+
+        delete myList;
     }
 
 }

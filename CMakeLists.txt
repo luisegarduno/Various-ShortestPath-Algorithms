@@ -19,5 +19,8 @@ endforeach()
 
 set(CMAKE_CXX_STANDARD 17)
 add_executable(${EXE_NAME} main.cpp MissingFilesException.h FileReader.cpp FileReader.h Menu.cpp Menu.h Node.h test.cpp catch.hpp
-        LinkedList.h)
+        LinkedList.h
+        Graph.h
+        Vertex.cpp
+        Vertex.h)
 
